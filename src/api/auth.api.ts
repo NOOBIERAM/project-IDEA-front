@@ -10,3 +10,8 @@ export const login = async (data: AuthLoginDto): Promise<AuthLoginResponse> => {
     const res = await api.post("/auth/login", data);
     return res.data;
 }
+
+export const refreshToken = async (): Promise<string> => {
+    const res = await api.post("/auth/refresh",{});
+    return res.data.accessToken;
+}
