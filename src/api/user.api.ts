@@ -1,7 +1,7 @@
 import api from "./axios.config";
-import type { UserResponse } from "../types/User";
+import type { User } from "../types/User";
 
-export const getUserProfile = async (): Promise<UserResponse> => {
+export const getUserProfile = async (): Promise<User> => {
     const res = await api.get("/user");
     return res.data;
 }

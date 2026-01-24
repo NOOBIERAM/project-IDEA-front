@@ -1,4 +1,4 @@
-import type { UserResponse } from "./User"
+import type { User } from "./User"
 
 export interface AuthLoginResponse {
     accessToken: string
@@ -9,7 +9,7 @@ export interface AuthLoginDto {
     password: string
 }
 
-export interface AuthRegisterResponse extends UserResponse {}
+export interface AuthRegisterResponse extends User {}
 export interface AuthRegisterDto extends AuthLoginDto {
     confirmPassword: string
 }
