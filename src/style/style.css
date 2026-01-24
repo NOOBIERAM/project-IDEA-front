@@ -1,0 +1,49 @@
+@layer theme,base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+/* #10B981 */
+
+
+@theme {
+    --color-eni-green: oklch(82.714% 0.17184 147.63);
+    --color-eni-green-50: oklch(100% 0 none);
+    --color-eni-green-100: oklch(100% 0 none);
+    --color-eni-green-200: oklch(100% 0 none);
+    --color-eni-green-300: oklch(99.114% 0.0091 150.7);
+    --color-eni-green-400: oklch(94.425% 0.05146 150.37);
+    --color-eni-green-500: oklch(90.289% 0.09354 149.62);
+    --color-eni-green-600: oklch(86.165% 0.13427 148.7);
+    --color-eni-green-700: oklch(82.714% 0.17184 147.63);
+    --color-eni-green-800: oklch(78.473% 0.21362 145.98);                                                           
+    --color-eni-green-900: oklch(70.056% 0.20791 145.14);
+    --color-eni-green-950: oklch(63.694% 0.18813 145.15);
+    --color-second : #151d28  
+
+}
+@font-face {
+  font-family: 'Pixel';
+  src: url('../assets/fonts/editundo.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --background: oklch(24.072% 0.03408 222.085);
+}
+
+@layer base {
+  body {
+    @apply bg-gray-800 text-gray-400;
+  }
+  section {
+    @apply px-10 lg:px-75 min-h-screen flex flex-col justify-center;
+  }
+  .section-title {
+    @apply text-xl md:text-3xl font-bold mb-15 text-gray-200 flex items-center
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
