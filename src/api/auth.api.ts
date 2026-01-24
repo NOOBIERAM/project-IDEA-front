@@ -1,5 +1,4 @@
 import api from "./axios.config";
-
 import type { AuthLoginDto, AuthLoginResponse, AuthRegisterDto, AuthRegisterResponse } from "../types/Auth";
 
 export const register = async (data: AuthRegisterDto): Promise<AuthRegisterResponse> => {
