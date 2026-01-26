@@ -21,12 +21,6 @@
     --color-second : #151d28  
 
 }
-@font-face {
-  font-family: 'Pixel';
-  src: url('../assets/fonts/editundo.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
 
 :root {
   --background: oklch(24.072% 0.03408 222.085);
@@ -34,10 +28,10 @@
 
 @layer base {
   body {
-    @apply bg-gray-800 text-gray-400;
+    @apply bg-white text-gray-700;
   }
   section {
-    @apply px-10 lg:px-75 min-h-screen flex flex-col justify-center;
+    @apply max-w-[1400px];
   }
   .section-title {
     @apply text-xl md:text-3xl font-bold mb-15 text-gray-200 flex items-center

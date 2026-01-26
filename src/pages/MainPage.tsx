@@ -1,6 +1,8 @@
 import { useState } from "react";
 import hero from "../assets/hero.webp";
-import { Brain, ChevronDown } from 'lucide-react';
+import { ArrowRight, Brain, ChevronDown } from 'lucide-react';
+import ScrollTop from "../components/ScrollTop";
+import Navbar from "../components/Navbar";
 
 const about = [
     {
@@ -52,7 +54,8 @@ const MainPage = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return <>
-        <section className="min-h-screen flex flex-col justify-center px-[2%]">
+        <Navbar/>
+        <section id="hero" className="min-h-screen flex flex-col justify-center px-[2%]">
             <div className="xl:grid xl:grid-cols-2 gap-12">
                 <div className="flex flex-col text-center xl:text-start justify-center ">
                     <h1 className="text-3xl lg:text-6xl font-bold leading-tight">
@@ -79,7 +82,7 @@ const MainPage = () => {
                 </div>
             </div>
         </section>
-        <section className="flex flex-col justify-center px-[2%] max-lg:px-[10%] mb-30">
+        <section id="apropos" className="flex flex-col justify-center lg:px-[2%] px-[10%] mb-30">
             <div className="xl:grid xl:grid-cols-2 gap-12">
 
                 <div className="flex flex-col text-center lg:text-start max-lg:items-center justify-start mb-20">
@@ -111,7 +114,7 @@ const MainPage = () => {
 
             </div>
         </section>
-        <section className="flex flex-col justify-center items-center px-[2%] max-lg:px-[10%] mb-30">
+        <section id="pourqui" className="flex flex-col justify-center items-center lg:px-[2%] px-[10%] mb-30">
 
             <div className="flex flex-col text-center lg:text-start max-lg:items-center justify-start mb-20">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 via to-cyan-400 bg-clip-text text-transparent">
@@ -166,6 +169,20 @@ const MainPage = () => {
                 ))}
             </div>
         </section>
+        <section id="commencer" className="w-full lg:px-[5%] px-[10%] mb-30">
+            <div className="w-full h-[380px] p-10 bg-gradient-to-tr from-purple-400 via-pink-300 to-cyan-400 rounded-3xl flex flex-col max-sm:items-center items-start justify-between">
+                <h1 className="text-6xl max-sm:text-4xl font-semibold text-white">Prêt à<br />construire un vrai projet ?</h1>
+                <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold">
+                    <span>Commencer </span> <ArrowRight size={20} className="translate-y-[2px]" />
+                </button>
+            </div>
+        </section>
+        <section id="footer" className="w-full lg:px-[5%] px-[10%] mb-30">
+            <div id="copyright" className=" border-gray-800 text-center">
+                <p>© 2026 Project-IDEA - RoutsGG - NOOBIERAM.</p>
+            </div>
+        </section>
+        <ScrollTop />
 
     </>
 }

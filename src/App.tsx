@@ -2,7 +2,7 @@ import AppRoutes from "./routes/AppRoutes"
 
 function App() {
   return (
-    <main className=" font-mono">
+    <main className=" flex flex-col items-center">
         <AppRoutes />
     </main>
   )
