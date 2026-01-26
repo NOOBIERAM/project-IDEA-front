@@ -55,7 +55,7 @@ const MainPage = () => {
 
     return <>
         <Navbar/>
-        <section id="hero" className="min-h-screen flex flex-col justify-center px-[2%]">
+        <section id="acceuil" className="min-h-screen flex flex-col justify-center px-[2%]">
             <div className="xl:grid xl:grid-cols-2 gap-12">
                 <div className="flex flex-col text-center xl:text-start justify-center ">
                     <h1 className="text-3xl lg:text-6xl font-bold leading-tight">
@@ -114,7 +114,7 @@ const MainPage = () => {
 
             </div>
         </section>
-        <section id="pourqui" className="flex flex-col justify-center items-center lg:px-[2%] px-[10%] mb-30">
+        <section id="cible" className="flex flex-col justify-center items-center lg:px-[2%] px-[10%] mb-30">
 
             <div className="flex flex-col text-center lg:text-start max-lg:items-center justify-start mb-20">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 via to-cyan-400 bg-clip-text text-transparent">
