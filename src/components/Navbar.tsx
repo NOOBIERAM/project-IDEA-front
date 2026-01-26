@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { scrollToSection } from "../utils/utils";
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -13,12 +14,9 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const scrollToSection = (id: string) => {
+    const scrollTo = (id: string) => {
         setSelectedLink(id);
-        const section = document.getElementById(id);
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-        }
+        scrollToSection(id)
     };
 
     return (
@@ -34,24 +32,24 @@ const Navbar = () => {
             `}
         >
             <div className="border-2 p-3 rounded-lg">
-                <button className=" font-bold" onClick={() => scrollToSection("acceuil")}>
+                <button className=" font-bold" onClick={() => scrollTo("acceuil")}>
                     Project-IDEA
                 </button>
             </div>
 
             <ul className="flex items-center space-x-10 font-bold">
                 <li>
-                    <button onClick={() => scrollToSection("acceuil")} className={`uppercase ${selectedLink === "acceuil" ? "" : "text-gray-500"}`}>
+                    <button onClick={() => scrollTo("acceuil")} className={`uppercase ${selectedLink === "acceuil" ? "" : "text-gray-500"}`}>
                         Accueil
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => scrollToSection("apropos")} className={`uppercase ${selectedLink === "apropos" ? "" : "text-gray-500"}`}>
+                    <button onClick={() => scrollTo("apropos")} className={`uppercase ${selectedLink === "apropos" ? "" : "text-gray-500"}`}>
                         À propos
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => scrollToSection("cible")} className={`uppercase ${selectedLink === "cible" ? "" : "text-gray-500"}`}>
+                    <button onClick={() => scrollTo("cible")} className={`uppercase ${selectedLink === "cible" ? "" : "text-gray-500"}`}>
                         Cibles
                     </button>
                 </li>

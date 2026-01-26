@@ -1,65 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import hero from "../assets/hero.webp";
-import { ArrowRight, Brain, ChevronDown } from 'lucide-react';
+import { ArrowRight, Braces, Brain, ChevronDown, Code2, Lightbulb, Target, GraduationCap,SquareUserRound, Zap } from 'lucide-react';
 import ScrollTop from "../components/ScrollTop";
 import Navbar from "../components/Navbar";
+import { scrollToSection } from "../utils/utils";
 
 const about = [
     {
         icon: Brain,
-        title: "Génération d'idées",
-        description: "Utilisez notre IA avancée pour générer des idées de projets innovants basées sur vos intérêts et compétences."
+        title: "IA Personnalisée",
+        description: "Grâce à une intelligence artificielle spécialisée, nous générons des idées de projets adaptées à ton niveau."
     },
     {
-        icon: Brain,
-        title: "Génération d'idées",
-        description: "Utilisez notre IA avancée pour générer des idées de projets innovants basées sur vos intérêts et compétences."
+        icon: Target,
+        title: "Idées Adaptées",
+        description: "Des idées réalistes selon votre niveau de compétence, du débutant au développeur expérimenté."
     },
     {
-        icon: Brain,
-        title: "Génération d'idées",
-        description: "Utilisez notre IA avancée pour générer des idées de projets innovants basées sur vos intérêts et compétences."
+        icon: Braces,
+        title: 'Stack & Tech',
+        description: 'Idées pour frontend, backend, mobile, IA, et bien plus'
     },
     {
-        icon: Brain,
-        title: "Génération d'idées",
-        description: "Utilisez notre IA avancée pour générer des idées de projets innovants basées sur vos intérêts et compétences."
-    },
+        icon: Lightbulb,
+        title: 'Inspiration Continue',
+        description: 'Chaque génération vous propose des idées inédites et toujours renouvelées.'
+    }
 ]
 
-const clients = [
+const cibles = [
     {
-        icon: Brain,
-        title: "Développeurs",
-        description: "Utilisez notre IA avancée pour générer des idées de projets innovants basées sur vos intérêts et compétences."
+        icon: Zap,
+        title: "Autodidactes",
+        description: "Apprends en construisant de vrais projets, sans rester bloqué à chercher des idées."
     },
     {
-        icon: Brain,
+        icon: Code2,
         title: "Développeurs",
-        description: "Utilisez notre IA avancée pour générer des idées de projets innovants basées sur vos intérêts et compétences."
+        description: "Génère des projets adaptés à ton stack pour renforcer tes compétences techniques."
     },
     {
-        icon: Brain,
-        title: "Développeurs",
-        description: "Utilisez notre IA avancée pour générer des idées de projets innovants basées sur vos intérêts et compétences."
+        icon: SquareUserRound,
+        title: "Portfolio",
+        description: "Construis des projets pertinents pour enrichir ton portfolio et te démarquer."
     },
     {
-        icon: Brain,
-        title: "Développeurs",
-        description: "Utilisez notre IA avancée pour générer des idées de projets innovants basées sur vos intérêts et compétences."
+        icon: GraduationCap,
+        title: "Bootcamp learners",
+        description: "Des idées guidées pour t’entraîner entre les cours et consolider tes acquis."
     },
-]
+];
+
 
 const MainPage = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [isScrolled, setIsScrolled] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 10)
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
 
     return <>
-        <Navbar/>
+        <Navbar />
         <section id="acceuil" className="min-h-screen flex flex-col justify-center px-[2%]">
             <div className="xl:grid xl:grid-cols-2 gap-12">
                 <div className="flex flex-col text-center xl:text-start justify-center ">
                     <h1 className="text-3xl lg:text-6xl font-bold leading-tight">
-                        Trouve ton prochain projet avec{' '}
+                        Trouve votre prochaine idée avec{' '}
                         <br />
                         <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
                             Project-IDEA
@@ -81,6 +90,13 @@ const MainPage = () => {
                     <img src={hero} alt="Hero" className="h-[90%]" />
                 </div>
             </div>
+            <div className={`flex items-center justify-center transition-all duration-500 ${!isScrolled ? "opacity-100" : "opacity-0"}`}>
+                <button onClick={() => scrollToSection("apropos")} >
+                    <ChevronDown size={30} className="animate-bounce translate-y-30" />
+                    <ChevronDown size={30} className="animate-bounce translate-y-25" />
+                    <ChevronDown size={30} className="animate-bounce translate-y-20" />
+                </button>
+            </div>
         </section>
         <section id="apropos" className="flex flex-col justify-center lg:px-[2%] px-[10%] mb-30">
             <div className="xl:grid xl:grid-cols-2 gap-12">
@@ -89,11 +105,11 @@ const MainPage = () => {
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 via to-cyan-400 bg-clip-text text-transparent mb-5">
                         A propos
                     </h1>
-                    {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-10 bg-gradient-to-r from-purple-500 via to-cyan-400 bg-clip-text text-transparent opacity-40 translate-y-[-25px]">
+                    {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-10 bg-gradient-to-b from-white via-white to-purple-400 bg-clip-text text-transparent opacity-40 translate-y-[-60px] translate-x-5">
                         A propos
                     </h1> */}
                     <div className="max-w-[400px] max-lg:max-w-full ">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem in provident fuga aliquid recusandae accusantium mollitia minima, sint, officia, earum delectus asperiores commodi fugiat quam itaque tenetur praesentium incidunt? Minus?
+                        Une plateforme conçue pour aider les développeurs à transformer une simple envie de coder en un projet concret.
                     </div>
                 </div>
                 <div className="flex flex-col  items-start justify-start">
@@ -122,7 +138,7 @@ const MainPage = () => {
                 </h1>
             </div>
             <div className="max-sm:max-w-[270px] max-sm:flex lg:flex max-sm:flex-col sm:grid max-lg:grid grid-cols-2 gap-8 items-center justify-center mx-auto">
-                {clients.map((item, index) => (
+                {cibles.map((item, index) => (
                     <div
                         key={index}
                         className={`max-sm:border-b-2 sm:border-2 border-purple-100 max-sm:rounded-bl-xl sm:rounded-xl p-3 max-sm:ps-0 ${openIndex === index ? "max-sm:pt-0" : "max-sm:py-0"}`}
