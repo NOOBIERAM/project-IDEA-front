@@ -1,7 +1,7 @@
 import { Rocket} from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-const ScrollTop: React.FC = () => {
+const ScrollTop = () => {
     const [isScrolled, setIsScrolled] = useState(false)
 
     useEffect(() => {
@@ -11,8 +11,7 @@ const ScrollTop: React.FC = () => {
     }, [])
     return (
         <div
-            className={`fixed z-50 bottom-6 right-6 transition-all duration-700 flex flex-col sm:flex-row space-y-2 sm:space-x-3 ${isScrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-                }`}
+            className={`fixed z-50 bottom-6 right-6 transition-all duration-700 flex flex-col sm:flex-row space-y-2 sm:space-x-3 ${isScrolled ? "opacity-100" : "opacity-0 pointer-events-none"    }`}
         >
             <button
                 type="button"
