@@ -1,9 +1,9 @@
 import { ArrowLeft } from "lucide-react"
-import computer from "../assets/computer.png"
 import { useNavigate } from "react-router-dom"
 
 const RegisterPage = () => {
     const navigate = useNavigate()
+    const videoUrl = new URL("../assets/registerAnim.webm", import.meta.url).href;
 
     return <section id="register" className="min-h-screen  flex flex-col items-center justify-center lg:min-w-[1400px]">
         {/* <div className="bg-white absolute w-full h-full -z-1"></div> */}
@@ -11,17 +11,18 @@ const RegisterPage = () => {
             <div className="max-lg:hidden p-3 bg-gradient-to-tr from-purple-300 via-pink-300 to-cyan-200 rounded-3xl">
                 <div className="bg-white/30 p-5 rounded-3xl backdrop-blur-3xl relative flex items-center justify-center h-full">
 
-                    {/* Bouton en haut à gauche */}
                     <button className="absolute top-5 left-5 text-sm px-6 py-1 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-2 bg-white font-semibold"
                         onClick={() => navigate("/")}>
                         <ArrowLeft size={15} />
                         <span>Acceuil</span>
                     </button>
 
-                    {/* Image centrée horizontalement et verticalement */}
-                    <img
-                        src={computer}
-                        className="w-90 rotate-y-180 drop-shadow-[0_10px_20px_rgba(0,0,0,0.1)]"
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        src={videoUrl}
+                        className="w-90 "
                     />
 
                 </div>
