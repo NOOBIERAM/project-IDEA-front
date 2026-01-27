@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import hero from "../assets/hero.webp";
+import hero from "../assets/images/hero.webp";
 import { ArrowRight, Braces, Brain, ChevronDown, Code2, Lightbulb, Target, GraduationCap, SquareUserRound, Zap } from 'lucide-react';
 import ScrollTop from "../components/ScrollTop";
 import Navbar from "../components/Navbar";

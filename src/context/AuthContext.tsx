@@ -2,10 +2,11 @@ import { createContext, useState, useEffect } from "react";
 import api from "../api/axios.config";
 import { getUserProfile } from "../api/user.api";
 import { refreshToken } from "../api/auth.api";
+import type { User } from "../types/User";
 
 interface AuthContextType {
-  user: any | null;
-  setUser: (user: any) => void;
+  user: User | null;
+  setUser: (user: User | null) => void;
   loading: boolean;
   logout: () => void;
 }
@@ -18,7 +19,7 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: any) => {
-  const [user, setUser] = useState<any | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   const initializeAuth = async () => {

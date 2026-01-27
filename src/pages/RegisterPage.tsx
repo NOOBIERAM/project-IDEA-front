@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 const RegisterPage = () => {
     const navigate = useNavigate()
-    const videoUrl = new URL("../assets/registerAnim.webm", import.meta.url).href;
+    const videoUrl = new URL("../assets/animations/registerAnim.webm", import.meta.url).href;
 
     return <section id="register" className="min-h-screen  flex flex-col items-center justify-center lg:min-w-[1400px]">
         {/* <div className="bg-white absolute w-full h-full -z-1"></div> */}
