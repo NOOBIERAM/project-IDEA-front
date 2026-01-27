@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { scrollToSection } from "../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const [scrolled, setScrolled] = useState(false);
     const [selectedLink, setSelectedLink] = useState('acceuil'); // Placeholder for future use
 
@@ -56,7 +58,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <div className="rounded-full p-[2px] bg-gradient-to-br from-pink-500 via-pink-500 to-purple-500">
-                        <button className="bg-white px-6 py-2 rounded-full">
+                        <button className="bg-white px-6 py-2 rounded-full" onClick={() => navigate("/register")}>
                             S'inscrire
                         </button>
                     </div>
