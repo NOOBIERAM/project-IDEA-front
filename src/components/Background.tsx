@@ -1,6 +1,6 @@
-import Glassy from "../assets/glassy.png";
-import Hashtag from "../assets/hashtag.png";
-import infinity from "../assets/infinity.png";
+import Glassy from "../assets/glassy.webp";
+import Hashtag from "../assets/hashtag.webp";
+import infinity from "../assets/infinity.webp";
 import lenses from "../assets/lenses.webp";
 
 const Background = () => {

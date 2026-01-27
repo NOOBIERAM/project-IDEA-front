@@ -5,6 +5,7 @@ import ScrollTop from "../components/ScrollTop";
 import Navbar from "../components/Navbar";
 import { scrollToSection } from "../utils/utils";
 import Background from "../components/Background";
+import { useNavigate } from "react-router-dom";
 
 const about = [
     {
@@ -54,6 +55,7 @@ const cibles = [
 
 
 const MainPage = () => {
+    const navigate = useNavigate()
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [isScrolled, setIsScrolled] = useState(false)
 
@@ -81,7 +83,7 @@ const MainPage = () => {
                             Générer une idée
                         </button>
                         <div className="rounded-full p-[2px] bg-gradient-to-br from-pink-500 via-pink-500 to-purple-500 hover:scale-105 transition-transform duration-300">
-                            <button className="bg-white px-6 py-3 rounded-full w-full hover:scale-99 transition-transform duration-300">
+                            <button className="bg-white px-6 py-3 rounded-full w-full hover:scale-99 transition-transform duration-300" onClick={()=> navigate("/login")}>
                                 Commencer
                             </button>
                         </div>
