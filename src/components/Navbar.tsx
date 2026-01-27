@@ -22,9 +22,10 @@ const Navbar = () => {
     return (
         <nav
             className={`
+                max-sm:hidden
                 fixed top-0 z-30 max-w-[1400px] w-full h-16
                 flex items-center justify-between
-                transition-all duration-300
+                transition-all duration-300 rounded-b-xl
                 ${scrolled
                     ? "bg-white/70 backdrop-blur-xl"
                     : "bg-transparent"

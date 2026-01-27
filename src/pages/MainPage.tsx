@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import hero from "../assets/hero.webp";
-import { ArrowRight, Braces, Brain, ChevronDown, Code2, Lightbulb, Target, GraduationCap,SquareUserRound, Zap } from 'lucide-react';
+import { ArrowRight, Braces, Brain, ChevronDown, Code2, Lightbulb, Target, GraduationCap, SquareUserRound, Zap } from 'lucide-react';
 import ScrollTop from "../components/ScrollTop";
 import Navbar from "../components/Navbar";
 import { scrollToSection } from "../utils/utils";
+import Background from "../components/Background";
 
 const about = [
     {
@@ -63,6 +64,7 @@ const MainPage = () => {
     }, [])
 
     return <>
+        <Background />
         <Navbar />
         <section id="acceuil" className="min-h-screen flex flex-col justify-center px-[2%]">
             <div className="xl:grid xl:grid-cols-2 gap-12">
@@ -75,11 +77,11 @@ const MainPage = () => {
                         </span>
                     </h1>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center xl:justify-start mt-15 pl-2.5 max-sm:px-15 font-semibold">
-                        <button className="px-6 py-3 border-1 rounded-full hover:scale-105 transition-transform duration-300">
+                        <button className="px-6 py-3 border-2 rounded-full hover:scale-105 transition-transform duration-300">
                             Générer une idée
                         </button>
                         <div className="rounded-full p-[2px] bg-gradient-to-br from-pink-500 via-pink-500 to-purple-500 hover:scale-105 transition-transform duration-300">
-                            <button className="bg-white  px-6 py-3 rounded-full w-full hover:scale-99 transition-transform duration-300">
+                            <button className="bg-white px-6 py-3 rounded-full w-full hover:scale-99 transition-transform duration-300">
                                 S'inscrire
                             </button>
                         </div>
@@ -130,7 +132,7 @@ const MainPage = () => {
 
             </div>
         </section>
-        <section id="cible" className="flex flex-col justify-center items-center lg:px-[2%] px-[10%] mb-30">
+        <section id="cible" className="flex flex-col justify-center items-center lg:px-[2%] px-[10%] mb-60">
 
             <div className="flex flex-col text-center lg:text-start max-lg:items-center justify-start mb-20">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 via to-cyan-400 bg-clip-text text-transparent">
@@ -186,12 +188,19 @@ const MainPage = () => {
             </div>
         </section>
         <section id="commencer" className="w-full lg:px-[5%] px-[10%] mb-30">
-            <div className="w-full h-[380px] p-10 bg-gradient-to-tr from-purple-400 via-pink-300 to-cyan-400 rounded-3xl flex flex-col max-sm:items-center items-start justify-between">
-                <h1 className="text-6xl max-sm:text-4xl font-semibold text-white">Prêt à<br />construire un vrai projet ?</h1>
-                <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold">
-                    <span>Commencer </span> <ArrowRight size={20} className="translate-y-[2px]" />
-                </button>
+            <div className="w-full h-[380px] p-3 bg-gradient-to-tr from-purple-400 via-pink-300 to-cyan-400 rounded-3xl">
+                <div className="bg-white/30 w-full h-full rounded-3xl backdrop-blur-3xl p-10 flex flex-col max-sm:items-center items-start justify-between ">
+                    <h1 className="text-6xl max-sm:text-4xl font-semibold text-white">
+                        Prêt à <br /> construire un vrai projet ?
+                    </h1>
+
+                    <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold">
+                        <span>Commencer</span>
+                        <ArrowRight size={20} className="translate-y-[2px]" />
+                    </button>
+                </div>
             </div>
+
         </section>
         <section id="footer" className="w-full lg:px-[5%] px-[10%] mb-30">
             <div id="copyright" className=" border-gray-800 text-center">
