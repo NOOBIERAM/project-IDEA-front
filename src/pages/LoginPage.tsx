@@ -14,7 +14,7 @@ const LoginPage = () => {
     const [username, setUsername] = useState("RoutsGG")
     const [password, setPassword] = useState("123456")
     const { setUser } = useContext(AuthContext);
-    const [errorMessage, setErrorMessage] = useState<"password" | "username" | null>(null);
+    const [errorMessage, setErrorMessage] = useState< string[] | null>(null);
     const handleLogin = async (e: any) => {
         e.preventDefault();
         try {
@@ -28,9 +28,9 @@ const LoginPage = () => {
                 const message = error.response.data.message;
 
                 if (message === "Invalid password") {
-                    setErrorMessage("password");
+                    setErrorMessage(["password", "incorrècte"]);
                 } else if (message === "User not found") {
-                    setErrorMessage("username");
+                    setErrorMessage(["username","n'existe pas"]);
                 } else {
                     console.error("❌ Erreur inconnue :", message);
                 }
@@ -70,7 +70,7 @@ const LoginPage = () => {
                 </h1>
                 <div className="space-y-5">
                     <div className="flex flex-col">
-                        <label className="font-semibold text-gray-700 flex items-center space-x-2"><span>Nom d'utilisateur</span> <X size={20} className={errorMessage === "username" ? "text-red-500 animate-pulse" : "hidden"   } /></label>
+                        <label className="font-semibold text-gray-700 flex items-center space-x-2"><span>Nom d'utilisateur</span> <span className={Array.isArray(errorMessage) && errorMessage[0] === "username" ? "text-red-500" : "hidden"} >{Array.isArray(errorMessage) ? `( ${errorMessage[1]} )` : ""}</span></label>
                         <input
                             type="text"
                             value={username}
@@ -85,7 +85,7 @@ const LoginPage = () => {
                     </div>
 
                     <div className="flex flex-col">
-                        <label className="font-semibold text-gray-700 flex items-center space-x-2"><span>Nom d'utilisateur</span> <X size={20} className={errorMessage === "password" ? "text-red-500 animate-pulse" : "hidden"   } /></label>
+                        <label className="font-semibold text-gray-700 flex items-center space-x-2"><span>Mots de passe</span> <span className={Array.isArray(errorMessage) && errorMessage[0] === "password" ? "text-red-500" : "hidden"} >{Array.isArray(errorMessage) ? `( ${errorMessage[1]} )` : ""}</span></label>
                         <input
                             type="password"
                             value={password}
