@@ -53,7 +53,6 @@ const cibles = [
     },
 ];
 
-
 const MainPage = () => {
     const navigate = useNavigate()
     const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -66,8 +65,8 @@ const MainPage = () => {
     }, [])
 
     return <>
-        <Background />
-        <Navbar />
+        <Background/>
+        <Navbar/>
         <section id="acceuil" className="min-h-screen flex flex-col justify-center px-[2%]">
             <div className="xl:grid xl:grid-cols-2 gap-12">
                 <div className="flex flex-col text-center xl:text-start justify-center ">
@@ -196,7 +195,7 @@ const MainPage = () => {
                         Prêt à <br /> construire un vrai projet ?
                     </h1>
 
-                    <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold">
+                    <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold" onClick={()=> navigate("/login")}>
                         <span>Commencer</span>
                         <ArrowRight size={20} className="translate-y-[2px]" />
                     </button>

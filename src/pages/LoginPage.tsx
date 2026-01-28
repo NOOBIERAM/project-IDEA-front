@@ -21,7 +21,7 @@ const LoginPage = () => {
             await login({ username, password });
             const profile = await getUserProfile();
             setUser(profile);
-            navigate("/logged");
+            navigate("/idea");
         } catch (error: any) {
             setVideAnimation(false);
             if (error.response) {

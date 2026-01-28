@@ -19,7 +19,7 @@ const RegisterPage = () => {
             try {
                 const profile = await register({ username, password, confirmPassword });
                 setUser(profile);
-                navigate("/logged");
+                navigate("/idea");
             } catch (error: any) {
                 setVideAnimation(false);
                 if (error.response) {
