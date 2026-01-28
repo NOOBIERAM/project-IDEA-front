@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { scrollToSection } from "../utils/utils";
+import { scrollToSection } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const LandingNavbar = () => {
     const navigate = useNavigate();
     const [scrolled, setScrolled] = useState(false);
     const [selectedLink, setSelectedLink] = useState('acceuil'); // Placeholder for future use
@@ -68,4 +68,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default LandingNavbar;

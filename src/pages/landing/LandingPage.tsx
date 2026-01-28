@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import hero from "../assets/images/hero.webp";
+import hero from "../../assets/images/hero.webp";
 import { ArrowRight, Braces, Brain, ChevronDown, Code2, Lightbulb, Target, GraduationCap, SquareUserRound, Zap } from 'lucide-react';
-import ScrollTop from "../components/ScrollTop";
-import Navbar from "../components/Navbar";
-import { scrollToSection } from "../utils/utils";
-import Background from "../components/Background";
+import ScrollTop from "../../components/landing/ScrollTop";
+import Navbar from "../../components/landing/LandingNavbar";
+import { scrollToSection } from "../../utils/utils";
+import Background from "../../components/landing/Background";
 import { useNavigate } from "react-router-dom";
 
 const about = [
@@ -53,7 +53,7 @@ const cibles = [
     },
 ];
 
-const MainPage = () => {
+const LandingPage = () => {
     const navigate = useNavigate()
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [isScrolled, setIsScrolled] = useState(false)
@@ -213,4 +213,4 @@ const MainPage = () => {
     </>
 }
 
-export default MainPage
+export default LandingPage

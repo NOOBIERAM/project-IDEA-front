@@ -1,10 +1,10 @@
 import { ArrowLeft } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import loginAnim from "../assets/animations/loginAnim.webm"
-import croixAnim from "../assets/animations/croix.webm"
+import loginAnim from "../../assets/animations/loginAnim.webm"
+import croixAnim from "../../assets/animations/croix.webm"
 import { useState } from "react"
-import { register } from "../api/auth.api"
-import type { User } from "../types/User"
+import { register } from "../../api/auth.api"
+import type { User } from "../../types/User"
 
 const RegisterPage = () => {
     const navigate = useNavigate()

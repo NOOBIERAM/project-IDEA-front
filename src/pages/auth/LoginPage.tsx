@@ -1,11 +1,11 @@
 import { useContext, useState } from "react"
 import { ArrowLeft, X } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import { AuthContext } from "../context/AuthContext"
-import { login } from "../api/auth.api"
-import { getUserProfile } from "../api/user.api"
-import loginAnim from "../assets/animations/loginAnim.webm"
-import croixAnim from "../assets/animations/croix.webm"
+import { AuthContext } from "../../context/AuthContext"
+import { login } from "../../api/auth.api"
+import { getUserProfile } from "../../api/user.api"
+import loginAnim from "../../assets/animations/loginAnim.webm"
+import croixAnim from "../../assets/animations/croix.webm"
 
 
 const LoginPage = () => {

@@ -1,4 +1,4 @@
-const Navbar = () => {
+const IdeaNavbar = () => {
     return (
         <nav className="w-full h-15 bg-white backdrop-blur-3xl shadow-lg flex items-center justify-between px-10">
                 <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-bold">
@@ -17,4 +17,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default IdeaNavbar
