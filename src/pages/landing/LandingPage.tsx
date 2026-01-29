@@ -6,6 +6,7 @@ import Navbar from "../../components/landing/LandingNavbar";
 import { scrollToSection } from "../../utils/utils";
 import Background from "../../components/landing/Background";
 import { useNavigate } from "react-router-dom";
+import GradientButton from "../../components/shared/GradientButton";
 
 const about = [
     {
@@ -81,11 +82,7 @@ const LandingPage = () => {
                         <button className="px-6 py-3 border-2 rounded-full hover:scale-105 transition-transform duration-300">
                             Générer une idée
                         </button>
-                        <div className="rounded-full p-[2px] bg-gradient-to-br from-pink-500 via-pink-500 to-purple-500 hover:scale-105 transition-transform duration-300">
-                            <button className="bg-white px-6 py-3 rounded-full w-full hover:scale-99 transition-transform duration-300" onClick={()=> navigate("/login")}>
-                                Commencer
-                            </button>
-                        </div>
+                        <GradientButton onClick={()=> navigate("/login")}> Commencer </GradientButton>            
                     </div>
                 </div>
                 {/* xl:flex flex-col */}

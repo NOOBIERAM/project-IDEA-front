@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { scrollToSection } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
+import GradientButton from "../shared/GradientButton";
 
 const LandingNavbar = () => {
     const navigate = useNavigate();
@@ -57,11 +58,9 @@ const LandingNavbar = () => {
                     </button>
                 </li>
                 <li>
-                    <div className="rounded-full p-[2px] bg-gradient-to-br from-pink-500 via-pink-500 to-purple-500">
-                        <button className="bg-white px-6 py-2 rounded-full" onClick={() => navigate("/register")}>
-                            S'inscrire
-                        </button>
-                    </div>
+                    <GradientButton onClick={() => navigate("/register")} className="py-2">
+                        S'inscrire
+                    </GradientButton>
                 </li>
             </ul>
         </nav>
