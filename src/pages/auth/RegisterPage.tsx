@@ -5,6 +5,7 @@ import croixAnim from "../../assets/animations/croix.webm"
 import { useState } from "react"
 import { register } from "../../api/auth.api"
 import type { User } from "../../types/User"
+import GradientButton from "../../components/shared/GradientButton"
 
 const RegisterPage = () => {
     const navigate = useNavigate()
@@ -109,11 +110,9 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="flex flex-col ">
-                    <div className="rounded-full p-[2px]  bg-gradient-to-br from-pink-500 via-pink-500 to-purple-500">
-                        <button type="submit" className="w-full bg-white px-6 py-2 rounded-full font-semibold">
-                            S'inscrire
-                        </button>
-                    </div>
+                    <GradientButton type="submit" className="py-2">
+                        S'inscrire
+                    </GradientButton>
                     <a href="/#/login" className="text-center text-sm mt-3 underline underline-offset-4">Déjà un compte ? Connectez-vous</a>
                 </div>
 

@@ -4,6 +4,7 @@ import LandingPage from "../pages/landing/LandingPage"
 import RegisterPage from "../pages/auth/RegisterPage"
 import LoginPage from "../pages/auth/LoginPage"
 import IdeaLayout from "../layouts/IdeaLayout"
+import IdeaPage from "../pages/idea/IdeaPage"
 
 const AppRoutes = () => {
     return (
@@ -15,7 +16,7 @@ const AppRoutes = () => {
                 <IdeaPage />
             </PrivateRoute>} /> */}
             <Route path="/idea" element={<IdeaLayout />}>
-                
+                <Route index element={<IdeaPage />} />
             </Route>
         </Routes>
     )

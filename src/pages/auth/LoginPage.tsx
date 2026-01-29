@@ -6,6 +6,7 @@ import { login } from "../../api/auth.api"
 import { getUserProfile } from "../../api/user.api"
 import loginAnim from "../../assets/animations/loginAnim.webm"
 import croixAnim from "../../assets/animations/croix.webm"
+import GradientButton from "../../components/shared/GradientButton"
 
 
 const LoginPage = () => {
@@ -100,11 +101,9 @@ const LoginPage = () => {
                 </div>
 
                 <div className="flex flex-col ">
-                    <div className="rounded-full p-[2px]  bg-gradient-to-br from-pink-500 via-pink-500 to-purple-500">
-                        <button type="submit" className="w-full bg-white px-6 py-2 rounded-full font-semibold">
-                            Se connecter
-                        </button>
-                    </div>
+                    <GradientButton type="submit" className="py-2">
+                        Se connecter
+                    </GradientButton>
                     <a href="/#/register" className="text-center text-sm mt-3 underline underline-offset-4">Pas de compte ? Inscrivez-vous</a>
                 </div>
 
