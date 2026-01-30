@@ -36,6 +36,46 @@
   .section-title {
     @apply text-xl md:text-3xl font-bold mb-15 text-gray-200 flex items-center
   }
+  .input-range {
+  @apply  appearance-none;
+}
+
+/* TRACK – Chrome */
+.input-range::-webkit-slider-runnable-track {
+  @apply bg-gray-200 h-2 rounded-full;
+}
+
+/* THUMB – Chrome */
+.input-range::-webkit-slider-thumb {
+  @apply appearance-none bg-pink-400 h-4 w-4 rounded-full border-0;
+  margin-top: -6px;
+
+  /* --- ANIMATION SMOOTH --- */
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.input-range:active::-webkit-slider-thumb {
+  transform: scale(1.25);
+}
+
+/* TRACK – Firefox */
+.input-range::-moz-range-track {
+  @apply bg-gray-200 h-2 rounded-full shadow-sm;
+  /* @apply bg-gradient-to-r from-cyan-200 via-pink-300 to-gray-300 h-2 rounded-full shadow-sm; */
+}
+
+/* THUMB – Firefox */
+.input-range::-moz-range-thumb {
+  @apply bg-pink-400 h-4 w-4 rounded-full shadow-sm border-0;
+
+  /* --- ANIMATION SMOOTH (Firefox) --- */
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.input-range:active::-moz-range-thumb {
+  transform: scale(1.25);
+}
+
 }
 
 html {

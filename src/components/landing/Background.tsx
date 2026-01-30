@@ -1,7 +1,7 @@
-import Glassy from "../assets/images/glassy.webp";
-import Hashtag from "../assets/images/hashtag.webp";
-import infinity from "../assets/images/infinity.webp";
-import lenses from "../assets/images/lenses.webp";
+import Glassy from "../../assets/images/glassy.webp";
+import Hashtag from "../../assets/images/hashtag.webp";
+import infinity from "../../assets/images/infinity.webp";
+import lenses from "../../assets/images/lenses.webp";
 
 const Background = () => {
   return <section className="max-w-[80px] overflow-x-hidden mx-auto ">

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import hero from "../assets/images/hero.webp";
+import hero from "../../assets/images/hero.webp";
 import { ArrowRight, Braces, Brain, ChevronDown, Code2, Lightbulb, Target, GraduationCap, SquareUserRound, Zap } from 'lucide-react';
-import ScrollTop from "../components/ScrollTop";
-import Navbar from "../components/Navbar";
-import { scrollToSection } from "../utils/utils";
-import Background from "../components/Background";
+import ScrollTop from "../../components/landing/ScrollTop";
+import Navbar from "../../components/landing/LandingNavbar";
+import { scrollToSection } from "../../utils/utils";
+import Background from "../../components/landing/Background";
 import { useNavigate } from "react-router-dom";
+import GradientButton from "../../components/shared/GradientButton";
 
 const about = [
     {
@@ -53,8 +54,7 @@ const cibles = [
     },
 ];
 
-
-const MainPage = () => {
+const LandingPage = () => {
     const navigate = useNavigate()
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [isScrolled, setIsScrolled] = useState(false)
@@ -66,8 +66,8 @@ const MainPage = () => {
     }, [])
 
     return <>
-        <Background />
-        <Navbar />
+        <Background/>
+        <Navbar/>
         <section id="acceuil" className="min-h-screen flex flex-col justify-center px-[2%]">
             <div className="xl:grid xl:grid-cols-2 gap-12">
                 <div className="flex flex-col text-center xl:text-start justify-center ">
@@ -82,11 +82,7 @@ const MainPage = () => {
                         <button className="px-6 py-3 border-2 rounded-full hover:scale-105 transition-transform duration-300">
                             Générer une idée
                         </button>
-                        <div className="rounded-full p-[2px] bg-gradient-to-br from-pink-500 via-pink-500 to-purple-500 hover:scale-105 transition-transform duration-300">
-                            <button className="bg-white px-6 py-3 rounded-full w-full hover:scale-99 transition-transform duration-300" onClick={()=> navigate("/login")}>
-                                Commencer
-                            </button>
-                        </div>
+                        <GradientButton onClick={()=> navigate("/login")}> Commencer </GradientButton>            
                     </div>
                 </div>
                 {/* xl:flex flex-col */}
@@ -196,7 +192,7 @@ const MainPage = () => {
                         Prêt à <br /> construire un vrai projet ?
                     </h1>
 
-                    <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold">
+                    <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold" onClick={()=> navigate("/login")}>
                         <span>Commencer</span>
                         <ArrowRight size={20} className="translate-y-[2px]" />
                     </button>
@@ -214,4 +210,4 @@ const MainPage = () => {
     </>
 }
 
-export default MainPage
+export default LandingPage
