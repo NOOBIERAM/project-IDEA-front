@@ -4,10 +4,11 @@ import CustomizationPanel from "../../components/idea/CustomizationPanel";
 import { getLevelName } from "../../helpers/getLevelName";
 import { getColors } from "../../helpers/getColors";
 import { truncateText } from "../../utils/trucanteText";
+import type { MistralResponse } from "../../types/Mistral";
 
 // TODO: integration API et génération dynamique des idées
 const IdeaPage = () => {
-    const ideas = [
+    const ideass = [
         {
             name: "To-Do List Application",
             description: "Une application de liste de tâches qui permet aux utilisateurs d'ajouter, supprimer et marquer des tâches comme terminées.",
@@ -255,6 +256,8 @@ const IdeaPage = () => {
             ]
         }
     ]
+    const [ideas, setIdeas] = useState<MistralResponse[]>([])
+
     const [showCustomoization, setShowCustomization] = useState(false);
 
     const [ideaText, setIdeaText] = useState("")
@@ -266,6 +269,7 @@ const IdeaPage = () => {
         setLevel(getLevelName(levelCount))
     }, [levelCount])
 
+   
 
     return <div className="flex h-full w-full">
         <section className="max-w-full w-full pt-10">
