@@ -1,4 +1,4 @@
-export const getColors = (level: string) => {
+export const getColors = (level: "débutant" | "intermédiaire" | "avancé") => {
     const colorMap = {
         débutant: { bg: "bg-cyan-100", text: "text-cyan-500", shadow: "shadow-cyan-200" },
         intermédiaire: { bg: "bg-pink-100", text: "text-pink-500", shadow: "shadow-pink-200" },
