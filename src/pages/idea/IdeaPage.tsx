@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { getColors, getLevelName, truncateText } from "../../utils/utils"
 import { Clock, Flame, LucideSquareArrowOutUpRight, Pin, Settings } from "lucide-react";
-import GradientButton from "../../components/shared/GradientButton";
 import CustomizationPanel from "../../components/idea/CustomizationPanel";
+import { getLevelName } from "../../helpers/getLevelName";
+import { getColors } from "../../helpers/getColors";
+import { truncateText } from "../../utils/trucanteText";
 
 // TODO: integration API et génération dynamique des idées
 const IdeaPage = () => {

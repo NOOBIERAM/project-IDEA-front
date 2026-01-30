@@ -3,10 +3,10 @@ import hero from "../../assets/images/hero.webp";
 import { ArrowRight, Braces, Brain, ChevronDown, Code2, Lightbulb, Target, GraduationCap, SquareUserRound, Zap } from 'lucide-react';
 import ScrollTop from "../../components/landing/ScrollTop";
 import Navbar from "../../components/landing/LandingNavbar";
-import { scrollToSection } from "../../utils/utils";
 import Background from "../../components/landing/Background";
 import { useNavigate } from "react-router-dom";
 import GradientButton from "../../components/shared/GradientButton";
+import { scrollToSection } from "../../helpers/scrollToSection";
 
 const about = [
     {

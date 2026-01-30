@@ -24,13 +24,14 @@ const CustomizationPanel = ({ ideaText, setIdeaText, levelCount, setLevelCount,c
 
             <div className="">
                 <label className="flex justify-between text-sm text-gray-700 mt-1">
+                    <span>Aléatoire</span>
                     <span>Débutant</span>
                     <span>Intermédiaire</span>
                     <span>Avancé</span>
                 </label>
                 <input
                     type="range"
-                    min="1"
+                    min="0"
                     max="3"
                     value={levelCount}
                     onChange={(e) => setLevelCount(parseInt(e.target.value))}
