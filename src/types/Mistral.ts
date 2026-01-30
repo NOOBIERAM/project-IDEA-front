@@ -1,3 +1,4 @@
+import type { LevelType } from "./Level";
 import type { Project } from "./Project";
 
 export interface MistralResponse extends Omit<Project, 'trash' | 'userId' | 'createdAt' | 'projectId'> {}
@@ -5,7 +6,7 @@ export interface MistralResponse extends Omit<Project, 'trash' | 'userId' | 'cre
 
 export interface MistralDto {
     description?: string
-    level: 'aléatoire' | 'débutant' | 'intermédiaire' | 'avancé'
+    level: LevelType
     // lang: 'fr' | 'en'
     count: number
 }
