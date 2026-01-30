@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { scrollToSection } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import GradientButton from "../shared/GradientButton";
+import { scrollToSection } from "../../helpers/scrollToSection";
 
 const LandingNavbar = () => {
     const navigate = useNavigate();
