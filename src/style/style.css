@@ -77,7 +77,43 @@
 }
 
 }
-
+.loader {
+  width: 65px;
+  aspect-ratio: 1;
+  position: relative;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  border-radius: 50px;
+  box-shadow: 0 0 0 3px inset #000;
+  animation: l5 2.5s infinite;
+}
+.loader:after {
+  animation-delay: -1.25s;
+  border-radius: 0;
+}
+@keyframes l5{
+  0%    {inset:0    35px 35px 0   }
+  12.5% {inset:0    35px 0    0   }
+  25%   {inset:35px 35px 0    0   }
+  37.5% {inset:35px 0    0    0   }
+  50%   {inset:35px 0    0    35px}
+  62.5% {inset:0    0    0    35px}
+  75%   {inset:0    0    35px 35px}
+  87.5% {inset:0    0    35px 0   }
+  100%  {inset:0    35px 35px 0   }
+}
+@keyframes l13 {
+  0%       {background-position:calc(3*100%/3) 0,calc(0*100%/3) 100%}
+  23%,33%  {background-position:calc(2*100%/3) 0,calc(1*100%/3) 100%}
+  56%,66%  {background-position:calc(1*100%/3) 0,calc(2*100%/3) 100%}
+  90%,100% {background-position:calc(0*100%/3) 0,calc(3*100%/3) 100%}
+}
+@keyframes l12 {
+  100%  {background-position:100% 0,100% 100%,0 100%,0 0,center}
+}
 html {
   scroll-behavior: smooth;
 }

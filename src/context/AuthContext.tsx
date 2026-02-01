@@ -3,6 +3,7 @@ import api from "../api/axios.config";
 import { getUserProfile } from "../api/user.api";
 import { refreshToken } from "../api/auth.api";
 import type { User } from "../types/User";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   user: User | null;
@@ -21,6 +22,7 @@ export const AuthContext = createContext<AuthContextType>({
 export const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
 
   const initializeAuth = async () => {
     try {
@@ -44,6 +46,7 @@ export const AuthProvider = ({ children }: any) => {
   }, []);
 
   const logout = () => {
+    navigate("/login");
     setUser(null);
     api.defaults.headers.common["Authorization"] = "";
   };
