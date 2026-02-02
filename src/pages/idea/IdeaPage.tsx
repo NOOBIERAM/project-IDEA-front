@@ -82,7 +82,8 @@ const IdeaPage = () => {
                                 </div>
                             </div>
                             <h2 className="font-semibold text-md mb-2">{idea.name}</h2>
-                            <p className="text-xs mb-5">{truncateText(idea.description, 150)}</p>
+                            <p className="text-xs mb-5 max-sm:hidden ">{truncateText(idea.description, 80)}</p>
+                            <p className="text-xs mb-5 lg:hidden  ">{truncateText(idea.description, 150)}</p> {/* sur affichage Mobile */}
                             <div className="flex items-center justify-start space-x-3 ">
                                 <div className="bg-gray-100 rounded-full py-1 px-3 flex items-center space-x-2 text-gray-700">
                                     <Clock size={18} className="text-black" />
@@ -99,16 +100,17 @@ const IdeaPage = () => {
                 }
             </div>
         </section>
-        <aside className="max-lg:hidden min-w-90 h-full border-l border-black/10 pt-10 px-10">
+        <aside className="max-lg:hidden min-w-100 h-full border-l border-black/10 pt-10 px-10">
             <h3 className="text-xl font-semibold flex items-center space-x-4 mb-10 h-[36px]"><Settings size={24} /> <span>Personalisation</span></h3>
             <CustomizationPanel
+                isLoading={isLoading}
                 ideaText={ideaText}
                 setIdeaText={setIdeaText}
                 levelCount={levelCount}
                 setLevelCount={setLevelCount}
                 count={count}
                 setCount={setCount}
-                onGenerate={() => { }}
+                onGenerate={() => { fetchIdeas() }}
             />
         </aside>
         <div
@@ -138,6 +140,7 @@ const IdeaPage = () => {
                     <h3 className="text-xl font-semibold flex items-center space-x-4 mb-10 h-[36px]"><Settings size={24} /> <span>Personalisation</span></h3>
 
                     <CustomizationPanel
+                        isLoading={isLoading}
                         ideaText={ideaText}
                         setIdeaText={setIdeaText}
                         levelCount={levelCount}
@@ -146,6 +149,7 @@ const IdeaPage = () => {
                         setCount={setCount}
                         onGenerate={() => {
                             setShowCustomization(false)
+                            fetchIdeas()
                         }}
                     />
                 </div>

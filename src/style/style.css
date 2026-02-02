@@ -76,6 +76,37 @@
   transform: scale(1.25);
 }
 
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.btn-loader {
+  width: 50px;
+  height: 20px;
+  --g: radial-gradient(farthest-side,#0000 calc(95% - 3px),#fb64b6 calc(100% - 1px) 98%,#0000 101%) no-repeat;
+  background: var(--g), var(--g), var(--g);
+  background-size: 5px 5px;
+  animation: l9 1s infinite alternate;
+}
+@keyframes l9 {
+  0% {
+    background-position: 0 50%, 50% 50%, 100% 50%;
+  }
+  20% {
+    background-position: 0 0, 50% 50%, 100% 50%;
+  }
+  40% {
+    background-position: 0 100%, 50% 0, 100% 50%;
+  }
+  60% {
+    background-position: 0 50%, 50% 100%, 100% 0;
+  }
+  80% {
+    background-position: 0 50%, 50% 50%, 100% 100%;
+  }
+  100% {
+    background-position: 0 50%, 50% 50%, 100% 50%;
+  }
+}
+
 }
 .loader {
   width: 65px;
