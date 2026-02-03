@@ -5,278 +5,57 @@ import { getLevelName } from "../../helpers/getLevelName";
 import { getColors } from "../../helpers/getColors";
 import { truncateText } from "../../utils/trucanteText";
 import type { MistralResponse } from "../../types/Mistral";
+import { getIdeaByMistral } from "../../api/mistral.api";
+import type { LevelType } from "../../types/Level";
 
-// TODO: integration API et génération dynamique des idées
+// TODO: integration customization
 const IdeaPage = () => {
-    const ideass = [
-        {
-            name: "To-Do List Application",
-            description: "Une application de liste de tâches qui permet aux utilisateurs d'ajouter, supprimer et marquer des tâches comme terminées.",
-            duration: "1-2 semaines",
-            level: "débutant",
-            difficulty_value: 1,
-            difficulty_percent: 20,
-            tasks: [
-                "Créer une interface utilisateur simple",
-                "Implémenter les fonctionnalités de base (ajout, suppression, marquage)",
-                "Stocker les tâches localement dans le navigateur"
-            ],
-            features: [
-                "Ajout de tâches",
-                "Suppression de tâches",
-                "Marquer les tâches comme terminées"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript"
-            ]
-        },
-        {
-            name: "Weather App",
-            description: "Une application météo qui affiche les prévisions météorologiques pour une localisation donnée.",
-            duration: "2-3 semaines",
-            level: "intermédiaire",
-            difficulty_value: 2,
-            difficulty_percent: 40,
-            tasks: [
-                "Utiliser une API météo pour obtenir les données",
-                "Créer une interface utilisateur réactive",
-                "Implémenter la géolocalisation pour obtenir les prévisions de l'utilisateur"
-            ],
-            features: [
-                "Affichage des prévisions météorologiques",
-                "Recherche par ville",
-                "Géolocalisation automatique"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "API météo (comme OpenWeatherMap)"
-            ]
-        },
-        {
-            name: "Personal Finance Tracker",
-            description: "Une application qui permet aux utilisateurs de suivre leurs dépenses et revenus.",
-            duration: "3-4 semaines",
-            level: "intermédiaire",
-            difficulty_value: 3,
-            difficulty_percent: 60,
-            tasks: [
-                "Créer une interface utilisateur pour ajouter et visualiser les transactions",
-                "Implémenter un système de catégories pour les dépenses",
-                "Stocker les données dans une base de données locale ou cloud"
-            ],
-            features: [
-                "Ajout de transactions",
-                "Catégorisation des dépenses",
-                "Visualisation des dépenses par catégorie"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Firebase ou SQLite"
-            ]
-        },
-        {
-            name: "E-commerce Website",
-            description: "Un site e-commerce complet avec un panier d'achat et un système de paiement.",
-            duration: "4-6 semaines",
-            level: "avancé",
-            difficulty_value: 4,
-            difficulty_percent: 80,
-            tasks: [
-                "Créer une interface utilisateur pour les produits et le panier",
-                "Implémenter un système de gestion des produits",
-                "Intégrer un système de paiement sécurisé"
-            ],
-            features: [
-                "Affichage des produits",
-                "Panier d'achat",
-                "Système de paiement"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Node.js",
-                "React",
-                "Stripe API"
-            ]
-        },
-        {
-            name: "Social Media Dashboard",
-            description: "Un tableau de bord qui permet aux utilisateurs de gérer leurs comptes de réseaux sociaux.",
-            duration: "5-7 semaines",
-            level: "avancé",
-            difficulty_value: 5,
-            difficulty_percent: 100,
-            tasks: [
-                "Créer une interface utilisateur pour gérer les comptes",
-                "Implémenter des intégrations avec les API des réseaux sociaux",
-                "Stocker les données des utilisateurs de manière sécurisée"
-            ],
-            features: [
-                "Gestion des comptes de réseaux sociaux",
-                "Analyse des performances",
-                "Planification des publications"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Node.js",
-                "React",
-                "API des réseaux sociaux (comme Twitter, Facebook)"
-            ]
-        },
-        {
-            name: "To-Do List Application",
-            description: "Une application de liste de tâches qui permet aux utilisateurs d'ajouter, supprimer et marquer des tâches comme terminées.",
-            duration: "1-2 semaines",
-            level: "débutant",
-            difficulty_value: 1,
-            difficulty_percent: 20,
-            tasks: [
-                "Créer une interface utilisateur simple",
-                "Implémenter les fonctionnalités de base (ajout, suppression, marquage)",
-                "Stocker les tâches localement dans le navigateur"
-            ],
-            features: [
-                "Ajout de tâches",
-                "Suppression de tâches",
-                "Marquer les tâches comme terminées"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript"
-            ]
-        },
-        {
-            name: "Weather App",
-            description: "Une application météo qui affiche les prévisions météorologiques pour une localisation donnée.",
-            duration: "2-3 semaines",
-            level: "intermédiaire",
-            difficulty_value: 2,
-            difficulty_percent: 40,
-            tasks: [
-                "Utiliser une API météo pour obtenir les données",
-                "Créer une interface utilisateur réactive",
-                "Implémenter la géolocalisation pour obtenir les prévisions de l'utilisateur"
-            ],
-            features: [
-                "Affichage des prévisions météorologiques",
-                "Recherche par ville",
-                "Géolocalisation automatique"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "API météo (comme OpenWeatherMap)"
-            ]
-        },
-        {
-            name: "Personal Finance Tracker",
-            description: "Une application qui permet aux utilisateurs de suivre leurs dépenses et revenus.",
-            duration: "3-4 semaines",
-            level: "intermédiaire",
-            difficulty_value: 3,
-            difficulty_percent: 60,
-            tasks: [
-                "Créer une interface utilisateur pour ajouter et visualiser les transactions",
-                "Implémenter un système de catégories pour les dépenses",
-                "Stocker les données dans une base de données locale ou cloud"
-            ],
-            features: [
-                "Ajout de transactions",
-                "Catégorisation des dépenses",
-                "Visualisation des dépenses par catégorie"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Firebase ou SQLite"
-            ]
-        },
-        {
-            name: "E-commerce Website",
-            description: "Un site e-commerce complet avec un panier d'achat et un système de paiement.",
-            duration: "4-6 semaines",
-            level: "avancé",
-            difficulty_value: 4,
-            difficulty_percent: 80,
-            tasks: [
-                "Créer une interface utilisateur pour les produits et le panier",
-                "Implémenter un système de gestion des produits",
-                "Intégrer un système de paiement sécurisé"
-            ],
-            features: [
-                "Affichage des produits",
-                "Panier d'achat",
-                "Système de paiement"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Node.js",
-                "React",
-                "Stripe API"
-            ]
-        },
-        {
-            name: "Social Media Dashboard",
-            description: "Un tableau de bord qui permet aux utilisateurs de gérer leurs comptes de réseaux sociaux.",
-            duration: "5-7 semaines",
-            level: "avancé",
-            difficulty_value: 5,
-            difficulty_percent: 100,
-            tasks: [
-                "Créer une interface utilisateur pour gérer les comptes",
-                "Implémenter des intégrations avec les API des réseaux sociaux",
-                "Stocker les données des utilisateurs de manière sécurisée"
-            ],
-            features: [
-                "Gestion des comptes de réseaux sociaux",
-                "Analyse des performances",
-                "Planification des publications"
-            ],
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Node.js",
-                "React",
-                "API des réseaux sociaux (comme Twitter, Facebook)"
-            ]
-        }
-    ]
+ 
     const [ideas, setIdeas] = useState<MistralResponse[]>([])
 
     const [showCustomoization, setShowCustomization] = useState(false);
 
     const [ideaText, setIdeaText] = useState("")
-    const [count, setCount] = useState(1);
     const [levelCount, setLevelCount] = useState(1);
-    const [level, setLevel] = useState("débutant")
+    const [level, setLevel] = useState<LevelType>("aléatoire")
+    const [count, setCount] = useState(10);
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setLevel(getLevelName(levelCount))
     }, [levelCount])
 
-   
+    const fetchIdeas = async () => {
+        try {
+            setIsLoading(true);
+            const newIdeas = await getIdeaByMistral({
+                description: ideaText,
+                level: level,
+                count: count
+            });
+            setIdeas(newIdeas);
+        } catch (error) {
+            console.error("-- Error while fetching ideas by mistral (IdeaPage.tsx)-- ", error)
+        }
+        finally {
+            setIsLoading(false)
+        }
+    }
+    useEffect(() => {
+        fetchIdeas()
+    }, [])
+
 
     return <div className="flex h-full w-full">
-        <section className="max-w-full w-full pt-10">
+        <section className="max-w-full w-full pt-10 relative">
             <h1 className="font-bold text-3xl mb-10 px-10">Idées De Projet  </h1>
+
+            {
+                isLoading && (<div className="loader absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-20"></div>)
+            }
             <div className="flex max-lg:flex-col flex-wrap gap-5 px-5 sm:px-10">
                 {
-                    ideas.map((idea, index) => (
+                    !isLoading && ideas.map((idea, index) => (
                         <div key={index} className={`group transition-all duration-300 ease-out hover:-translate-y-1 bg-white border border-gray-400 shadow-lg hover:shadow-${getColors(idea.level)}-100 rounded-xl p-3 max-lg:w-full`}>
                             <div className="flex items-center justify-between mb-3">
                                 <div className={`text-xs font-semibold flex rounded-e-full -translate-x-4  px-5 py-1 ${getColors(idea.level).bg} ${getColors(idea.level).text} ${getColors(idea.level).shadow}`}>
@@ -303,7 +82,8 @@ const IdeaPage = () => {
                                 </div>
                             </div>
                             <h2 className="font-semibold text-md mb-2">{idea.name}</h2>
-                            <p className="text-xs mb-5">{truncateText(idea.description, 150)}</p>
+                            <p className="text-xs mb-5 max-sm:hidden ">{truncateText(idea.description, 80)}</p>
+                            <p className="text-xs mb-5 lg:hidden  ">{truncateText(idea.description, 150)}</p> {/* sur affichage Mobile */}
                             <div className="flex items-center justify-start space-x-3 ">
                                 <div className="bg-gray-100 rounded-full py-1 px-3 flex items-center space-x-2 text-gray-700">
                                     <Clock size={18} className="text-black" />
@@ -320,16 +100,17 @@ const IdeaPage = () => {
                 }
             </div>
         </section>
-        <aside className="max-lg:hidden min-w-90 h-full border-l border-black/10 pt-10 px-10">
+        <aside className="max-lg:hidden min-w-100 h-full border-l border-black/10 pt-10 px-10">
             <h3 className="text-xl font-semibold flex items-center space-x-4 mb-10 h-[36px]"><Settings size={24} /> <span>Personalisation</span></h3>
             <CustomizationPanel
+                isLoading={isLoading}
                 ideaText={ideaText}
                 setIdeaText={setIdeaText}
                 levelCount={levelCount}
                 setLevelCount={setLevelCount}
                 count={count}
                 setCount={setCount}
-                onGenerate={() => { }}
+                onGenerate={() => { fetchIdeas() }}
             />
         </aside>
         <div
@@ -359,6 +140,7 @@ const IdeaPage = () => {
                     <h3 className="text-xl font-semibold flex items-center space-x-4 mb-10 h-[36px]"><Settings size={24} /> <span>Personalisation</span></h3>
 
                     <CustomizationPanel
+                        isLoading={isLoading}
                         ideaText={ideaText}
                         setIdeaText={setIdeaText}
                         levelCount={levelCount}
@@ -367,6 +149,7 @@ const IdeaPage = () => {
                         setCount={setCount}
                         onGenerate={() => {
                             setShowCustomization(false)
+                            fetchIdeas()
                         }}
                     />
                 </div>
