@@ -2,11 +2,9 @@ import { ArrowLeft } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import loginAnim from "../../assets/animations/loginAnim.webm"
 import croixAnim from "../../assets/animations/croix.webm"
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { register } from "../../api/auth.api"
-import type { User } from "../../types/User"
 import GradientButton from "../../components/shared/GradientButton"
-import { AuthContext } from "../../context/AuthContext"
 
 const RegisterPage = () => {
     const navigate = useNavigate()
@@ -15,14 +13,12 @@ const RegisterPage = () => {
     const [password, setPassword] = useState("123456")
     const [confirmPassword, setConfirmPassword] = useState("123456")
     const [errorMessage, setErrorMessage] = useState<string[] | null>(null);
-    const { setUser } = useContext(AuthContext);
     
     const handleRegister = async (e: any) => {
             e.preventDefault();
             try {
-                const profile = await register({ username, password, confirmPassword });
-                setUser(profile);
-                navigate("/idea");
+                await register({ username, password, confirmPassword });
+                navigate("/login");
             } catch (error: any) {
                 setVideAnimation(false);
                 if (error.response) {

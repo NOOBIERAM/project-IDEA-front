@@ -6,7 +6,6 @@ export interface Project {
     description: string;
     duration: string;
     level: ConcreteLevel;
-    difficulty_value: number;
     difficulty_percent: number;
     tasks: string[];
     features: string[];
