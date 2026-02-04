@@ -6,7 +6,7 @@ const IdeaNavbar = () => {
             </span>
             <ul className="max-sm:w-full flex space-x-15 items-center justify-between  font-semibold">
                 <li>Idée</li>
-                <li>Epingler</li>
+                <li>Enregistrer</li>
                 <li>Corbeille</li>
             </ul>
             <div className="flex space-x-3 font-semibold max-sm:hidden">

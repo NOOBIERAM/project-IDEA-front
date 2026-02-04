@@ -13,6 +13,7 @@ interface CustomizationPanelProps {
 
 
 const CustomizationPanel = ({ ideaText, setIdeaText, levelCount, setLevelCount,count, setCount, onGenerate, isLoading=false }: CustomizationPanelProps) => {
+    
     return (
         <div className="bg-white rounded-xl lg:p-4 mt-5 lg:border border-gray-400 lg:shadow-lg space-y-8 ld:space-y-4 flex flex-col">
 
@@ -56,7 +57,7 @@ const CustomizationPanel = ({ ideaText, setIdeaText, levelCount, setLevelCount,c
             </div>
 
             <GradientButton w1_full={true} className="py-2 text-sm" onClick={onGenerate} isDisable={isLoading}>
-                "Générer des idées"
+                Générer des idées
             </GradientButton>
         </div>
     );

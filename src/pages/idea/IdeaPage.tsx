@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Clock, Flame, LucideSquareArrowOutUpRight, Pin, Settings } from "lucide-react";
+import { Clock, Flame, LucideSquareArrowOutUpRight, Save, Settings } from "lucide-react";
 import CustomizationPanel from "../../components/idea/CustomizationPanel";
 import { getLevelName } from "../../helpers/getLevelName";
 import { getColors } from "../../helpers/getColors";
@@ -7,19 +7,24 @@ import { truncateText } from "../../utils/trucanteText";
 import type { MistralResponse } from "../../types/Mistral";
 import { getIdeaByMistral } from "../../api/mistral.api";
 import type { LevelType } from "../../types/Level";
+import DetailModal from "../../components/idea/DetailModal";
+import { createProject } from "../../api/project.api";
+import type { ProjectDto } from "../../types/Project";
 
 // TODO: integration customization
 const IdeaPage = () => {
- 
+
     const [ideas, setIdeas] = useState<MistralResponse[]>([])
 
     const [showCustomoization, setShowCustomization] = useState(false);
 
     const [ideaText, setIdeaText] = useState("")
-    const [levelCount, setLevelCount] = useState(1);
+    const [levelCount, setLevelCount] = useState(0);
     const [level, setLevel] = useState<LevelType>("aléatoire")
     const [count, setCount] = useState(10);
     const [isLoading, setIsLoading] = useState(false)
+    const [saveLoading, setSaveLoading] = useState(false)
+    const [selectedIdea, setSelectedIdea] = useState<MistralResponse | null>(null);
 
     useEffect(() => {
         setLevel(getLevelName(levelCount))
@@ -45,6 +50,17 @@ const IdeaPage = () => {
         fetchIdeas()
     }, [])
 
+    const handleSaveIdea = async (idea: ProjectDto) => {
+        try {
+            setSaveLoading(true);
+            await createProject(idea)
+            setIdeas((prevIdeas) => prevIdeas.filter((i) => i !== idea));
+        } catch (error) {
+            console.error("-- Error while saving project idea -- ", error)
+        } finally {
+            setSaveLoading(false);
+        }
+    }
 
     return <div className="flex h-full w-full">
         <section className="max-w-full w-full pt-10 relative">
@@ -56,22 +72,29 @@ const IdeaPage = () => {
             <div className="flex max-lg:flex-col flex-wrap gap-5 px-5 sm:px-10">
                 {
                     !isLoading && ideas.map((idea, index) => (
-                        <div key={index} className={`group transition-all duration-300 ease-out hover:-translate-y-1 bg-white border border-gray-400 shadow-lg hover:shadow-${getColors(idea.level)}-100 rounded-xl p-3 max-lg:w-full`}>
+
+                        <div key={index} className={`group transition-all duration-300 ease-out hover:-translate-y-1 bg-white border border-gray-400 shadow-lg hover:${getColors(idea.level).shadow} rounded-xl p-3 max-lg:w-full`}>
                             <div className="flex items-center justify-between mb-3">
                                 <div className={`text-xs font-semibold flex rounded-e-full -translate-x-4  px-5 py-1 ${getColors(idea.level).bg} ${getColors(idea.level).text} ${getColors(idea.level).shadow}`}>
                                     <p className="-translate-x-1">{idea.level}</p>
                                 </div>
                                 <div className="flex items-center justify-center space-x-2 opacity-0 group-hover:opacity-100  max-lg:opacity-100 transition-opacity">
 
-                                    <button className="relative group/item flex items-center border rounded-full px-2 py-1  text-gray-500 hover:text-gray-800">
+                                    <button className="relative group/item flex items-center border rounded-full px-2 py-1  text-gray-500 hover:text-gray-800" onClick={() => handleSaveIdea(idea)}>
 
-                                        <Pin size={18} />
-
-                                        <span className="max-sm:hidden text-xs max-w-0 max-lg:mx-2 max-lg:max-w-full overflow-hidden whitespace-nowrap transition-all duration-300 group-hover/item:mx-2 group-hover/item:max-w-[80px]">
-                                            Épingler
-                                        </span>
+                                        {
+                                            saveLoading ? (
+                                                <div className="btn-loader mx-auto"></div>
+                                            ) : (
+                                                <>
+                                                    <Save size={18} />
+                                                    <span className="max-sm:hidden text-xs max-w-0 max-lg:mx-2 max-lg:max-w-full overflow-hidden whitespace-nowrap transition-all duration-300 group-hover/item:mx-2 group-hover/item:max-w-[80px]">
+                                                        Enregistrer
+                                                    </span></>
+                                            )
+                                        }
                                     </button>
-                                    <button className="relative group/item flex items-center border rounded-full px-2 py-1  text-gray-500 hover:text-gray-800">
+                                    <button className="relative group/item flex items-center border rounded-full px-2 py-1  text-gray-500 hover:text-gray-800" onClick={() => setSelectedIdea(idea)}>
 
                                         <LucideSquareArrowOutUpRight size={18} />
 
@@ -155,7 +178,11 @@ const IdeaPage = () => {
                 </div>
             </div>
         )}
-
+        {
+            selectedIdea && <DetailModal idea={selectedIdea} onSave={() => { handleSaveIdea(selectedIdea) }} onCancel={() => {
+                setSelectedIdea(null)
+            }} />
+        }
     </div>
 }
 export default IdeaPage
