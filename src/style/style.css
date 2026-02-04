@@ -1,4 +1,4 @@
-@layer theme,base, components, utilities;
+@layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
@@ -6,20 +6,19 @@
 
 
 @theme {
-    --color-eni-green: oklch(82.714% 0.17184 147.63);
-    --color-eni-green-50: oklch(100% 0 none);
-    --color-eni-green-100: oklch(100% 0 none);
-    --color-eni-green-200: oklch(100% 0 none);
-    --color-eni-green-300: oklch(99.114% 0.0091 150.7);
-    --color-eni-green-400: oklch(94.425% 0.05146 150.37);
-    --color-eni-green-500: oklch(90.289% 0.09354 149.62);
-    --color-eni-green-600: oklch(86.165% 0.13427 148.7);
-    --color-eni-green-700: oklch(82.714% 0.17184 147.63);
-    --color-eni-green-800: oklch(78.473% 0.21362 145.98);                                                           
-    --color-eni-green-900: oklch(70.056% 0.20791 145.14);
-    --color-eni-green-950: oklch(63.694% 0.18813 145.15);
-    --color-second : #151d28  
-
+  --color-eni-green: oklch(82.714% 0.17184 147.63);
+  --color-eni-green-50: oklch(100% 0 none);
+  --color-eni-green-100: oklch(100% 0 none);
+  --color-eni-green-200: oklch(100% 0 none);
+  --color-eni-green-300: oklch(99.114% 0.0091 150.7);
+  --color-eni-green-400: oklch(94.425% 0.05146 150.37);
+  --color-eni-green-500: oklch(90.289% 0.09354 149.62);
+  --color-eni-green-600: oklch(86.165% 0.13427 148.7);
+  --color-eni-green-700: oklch(82.714% 0.17184 147.63);
+  --color-eni-green-800: oklch(78.473% 0.21362 145.98);
+  --color-eni-green-900: oklch(70.056% 0.20791 145.14);
+  --color-eni-green-950: oklch(63.694% 0.18813 145.15);
+  --color-second: #151d28
 }
 
 :root {
@@ -30,121 +29,179 @@
   body {
     @apply bg-white text-gray-700;
   }
+
   section {
     @apply max-w-[1400px];
   }
+
   .section-title {
     @apply text-xl md:text-3xl font-bold mb-15 text-gray-200 flex items-center
   }
+
   .input-range {
-  @apply  appearance-none;
-}
-
-/* TRACK – Chrome */
-.input-range::-webkit-slider-runnable-track {
-  @apply bg-gray-200 h-2 rounded-full;
-}
-
-/* THUMB – Chrome */
-.input-range::-webkit-slider-thumb {
-  @apply appearance-none bg-pink-400 h-4 w-4 rounded-full border-0;
-  margin-top: -6px;
-
-  /* --- ANIMATION SMOOTH --- */
-  transition: transform 0.15s ease, background-color 0.15s ease;
-}
-
-.input-range:active::-webkit-slider-thumb {
-  transform: scale(1.25);
-}
-
-/* TRACK – Firefox */
-.input-range::-moz-range-track {
-  @apply bg-gray-200 h-2 rounded-full shadow-sm;
-  /* @apply bg-gradient-to-r from-cyan-200 via-pink-300 to-gray-300 h-2 rounded-full shadow-sm; */
-}
-
-/* THUMB – Firefox */
-.input-range::-moz-range-thumb {
-  @apply bg-pink-400 h-4 w-4 rounded-full shadow-sm border-0;
-
-  /* --- ANIMATION SMOOTH (Firefox) --- */
-  transition: transform 0.15s ease, background-color 0.15s ease;
-}
-
-.input-range:active::-moz-range-thumb {
-  transform: scale(1.25);
-}
-
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
-.btn-loader {
-  width: 50px;
-  height: 20px;
-  --g: radial-gradient(farthest-side,#0000 calc(95% - 3px),#fb64b6 calc(100% - 1px) 98%,#0000 101%) no-repeat;
-  background: var(--g), var(--g), var(--g);
-  background-size: 5px 5px;
-  animation: l9 1s infinite alternate;
-}
-@keyframes l9 {
-  0% {
-    background-position: 0 50%, 50% 50%, 100% 50%;
+    @apply appearance-none;
   }
-  20% {
-    background-position: 0 0, 50% 50%, 100% 50%;
-  }
-  40% {
-    background-position: 0 100%, 50% 0, 100% 50%;
-  }
-  60% {
-    background-position: 0 50%, 50% 100%, 100% 0;
-  }
-  80% {
-    background-position: 0 50%, 50% 50%, 100% 100%;
-  }
-  100% {
-    background-position: 0 50%, 50% 50%, 100% 50%;
-  }
-}
 
-}
-.loader {
-  width: 65px;
-  aspect-ratio: 1;
-  position: relative;
-}
-.loader:before,
-.loader:after {
-  content: "";
-  position: absolute;
-  border-radius: 50px;
-  box-shadow: 0 0 0 3px inset #000;
-  animation: l5 2.5s infinite;
-}
-.loader:after {
-  animation-delay: -1.25s;
-  border-radius: 0;
-}
-@keyframes l5{
-  0%    {inset:0    35px 35px 0   }
-  12.5% {inset:0    35px 0    0   }
-  25%   {inset:35px 35px 0    0   }
-  37.5% {inset:35px 0    0    0   }
-  50%   {inset:35px 0    0    35px}
-  62.5% {inset:0    0    0    35px}
-  75%   {inset:0    0    35px 35px}
-  87.5% {inset:0    0    35px 0   }
-  100%  {inset:0    35px 35px 0   }
-}
-@keyframes l13 {
-  0%       {background-position:calc(3*100%/3) 0,calc(0*100%/3) 100%}
-  23%,33%  {background-position:calc(2*100%/3) 0,calc(1*100%/3) 100%}
-  56%,66%  {background-position:calc(1*100%/3) 0,calc(2*100%/3) 100%}
-  90%,100% {background-position:calc(0*100%/3) 0,calc(3*100%/3) 100%}
-}
-@keyframes l12 {
-  100%  {background-position:100% 0,100% 100%,0 100%,0 0,center}
-}
-html {
-  scroll-behavior: smooth;
+  /* TRACK – Chrome */
+  .input-range::-webkit-slider-runnable-track {
+    @apply bg-gray-200 h-2 rounded-full;
+  }
+
+  /* THUMB – Chrome */
+  .input-range::-webkit-slider-thumb {
+    @apply appearance-none bg-pink-400 h-4 w-4 rounded-full border-0;
+    margin-top: -6px;
+
+    /* --- ANIMATION SMOOTH --- */
+    transition: transform 0.15s ease, background-color 0.15s ease;
+  }
+
+  .input-range:active::-webkit-slider-thumb {
+    transform: scale(1.25);
+  }
+
+  /* TRACK – Firefox */
+  .input-range::-moz-range-track {
+    @apply bg-gray-200 h-2 rounded-full shadow-sm;
+    /* @apply bg-gradient-to-r from-cyan-200 via-pink-300 to-gray-300 h-2 rounded-full shadow-sm; */
+  }
+
+  /* THUMB – Firefox */
+  .input-range::-moz-range-thumb {
+    @apply bg-pink-400 h-4 w-4 rounded-full shadow-sm border-0;
+
+    /* --- ANIMATION SMOOTH (Firefox) --- */
+    transition: transform 0.15s ease, background-color 0.15s ease;
+  }
+
+  .input-range:active::-moz-range-thumb {
+    transform: scale(1.25);
+  }
+
+  /* HTML: <div class="loader"></div> */
+  /* HTML: <div class="loader"></div> */
+  .btn-loader {
+    width: 50px;
+    height: 20px;
+    --g: radial-gradient(farthest-side, #0000 calc(95% - 3px), #fb64b6 calc(100% - 1px) 98%, #0000 101%) no-repeat;
+    background: var(--g), var(--g), var(--g);
+    background-size: 5px 5px;
+    animation: l9 1s infinite alternate;
+  }
+
+  @keyframes l9 {
+    0% {
+      background-position: 0 50%, 50% 50%, 100% 50%;
+    }
+
+    20% {
+      background-position: 0 0, 50% 50%, 100% 50%;
+    }
+
+    40% {
+      background-position: 0 100%, 50% 0, 100% 50%;
+    }
+
+    60% {
+      background-position: 0 50%, 50% 100%, 100% 0;
+    }
+
+    80% {
+      background-position: 0 50%, 50% 50%, 100% 100%;
+    }
+
+    100% {
+      background-position: 0 50%, 50% 50%, 100% 50%;
+    }
+  }
+
+
+  .loader {
+    width: 65px;
+    aspect-ratio: 1;
+    position: relative;
+  }
+
+  .loader:before,
+  .loader:after {
+    content: "";
+    position: absolute;
+    border-radius: 50px;
+    box-shadow: 0 0 0 3px inset #000;
+    animation: l5 2.5s infinite;
+  }
+
+  .loader:after {
+    animation-delay: -1.25s;
+    border-radius: 0;
+  }
+
+  @keyframes l5 {
+    0% {
+      inset: 0 35px 35px 0
+    }
+
+    12.5% {
+      inset: 0 35px 0 0
+    }
+
+    25% {
+      inset: 35px 35px 0 0
+    }
+
+    37.5% {
+      inset: 35px 0 0 0
+    }
+
+    50% {
+      inset: 35px 0 0 35px
+    }
+
+    62.5% {
+      inset: 0 0 0 35px
+    }
+
+    75% {
+      inset: 0 0 35px 35px
+    }
+
+    87.5% {
+      inset: 0 0 35px 0
+    }
+
+    100% {
+      inset: 0 35px 35px 0
+    }
+  }
+
+  @keyframes l13 {
+    0% {
+      background-position: calc(3*100%/3) 0, calc(0*100%/3) 100%
+    }
+
+    23%,
+    33% {
+      background-position: calc(2*100%/3) 0, calc(1*100%/3) 100%
+    }
+
+    56%,
+    66% {
+      background-position: calc(1*100%/3) 0, calc(2*100%/3) 100%
+    }
+
+    90%,
+    100% {
+      background-position: calc(0*100%/3) 0, calc(3*100%/3) 100%
+    }
+  }
+
+  @keyframes l12 {
+    100% {
+      background-position: 100% 0, 100% 100%, 0 100%, 0 0, center
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
