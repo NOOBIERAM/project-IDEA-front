@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom"
+
 const IdeaNavbar = () => {
     return (
         <nav className="w-full min-h-15 bg-white backdrop-blur-3xl flex items-center justify-between px-10 shadow-lg shadow-gray-100">
@@ -5,9 +7,9 @@ const IdeaNavbar = () => {
                 Project-IDEA
             </span>
             <ul className="max-sm:w-full flex space-x-15 items-center justify-between  font-semibold">
-                <li>Idée</li>
-                <li>Enregistrer</li>
-                <li>Corbeille</li>
+                <NavLink to="/idea">Idée</NavLink>
+                <NavLink to="/idea/saved">Enregistrer</NavLink>
+                <NavLink to="/idea/trash">Corbeille</NavLink>
             </ul>
             <div className="flex space-x-3 font-semibold max-sm:hidden">
                 <h1>User</h1>
