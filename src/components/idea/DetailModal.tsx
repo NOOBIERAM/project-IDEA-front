@@ -1,27 +1,41 @@
-import { Clock, Flame, Save, X, Lightbulb } from "lucide-react";
+import { Clock, Flame, Save, X, Lightbulb, Trash2 } from "lucide-react";
 import { getColors } from "../../helpers/getColors";
 import type { Project } from "../../types/Project";
 
 interface DetailModalProps {
-    onSave: () => void;
+    onSave?: () => void;
+    onDelete?: () => void;
     onCancel: () => void;
     idea: Partial<Project>
 }
 
-const DetailModal = ({ idea, onSave, onCancel }: DetailModalProps) => {
+const DetailModal = ({ idea, onSave, onDelete, onCancel }: DetailModalProps) => {
     return (
         <div className="absolute top-0 h-full w-full flex items-center justify-center z-1 bg-black/5 backdrop-blur-[1px]" onClick={onCancel}>
             <div className="bg-white p-10 rounded-xl shadow-xl relative">
                 <div className="absolute flex items-center top-3 right-3 ">
-                    <button className="relative group flex items-center  rounded-full px-2 py-1  text-gray-500 hover:text-gray-800 hover:border hover:font-medium" onClick={onSave}>
+                    { onSave &&
+                        <button className="relative group flex items-center  rounded-full px-2 py-1  text-gray-500 hover:text-gray-800 hover:border hover:font-medium" onClick={onSave}>
 
-                        <Save size={23} />
+                            <Save size={23} />
 
-                        <span className="text-sm max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:mx-2 group-hover:max-w-[80px]">
-                            Enregistrer
-                        </span>
-                    </button>
-                    <button className="text-gray-500 hover:text-red-400 flex items-center justify-center  rounded-full" onClick={onCancel}><X size={23}/></button>
+                            <span className="text-sm max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:mx-2 group-hover:max-w-[80px]">
+                                Enregistrer
+                            </span>
+                        </button>
+                    }
+                    { onDelete &&
+                        <button className="relative group flex items-center  rounded-full px-2 py-1  text-gray-500 hover:text-gray-800 hover:border hover:font-medium" onClick={onDelete}>
+
+                            <Trash2 size={23} />
+
+                            <span className="text-sm max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:mx-2 group-hover:max-w-[80px]">
+                                Supprimer
+                            </span>
+                        </button>
+                    }
+
+                    <button className="text-gray-500 hover:text-red-400 flex items-center justify-center  rounded-full" onClick={onCancel}><X size={23} /></button>
                 </div>
                 <div className=" rounded-xl">
                     <h1 className="text-3xl font-semibold flex items-center space-x-3"><Lightbulb className="text-yellow-400" size={35} /><span>{idea.name}</span></h1>

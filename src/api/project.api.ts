@@ -11,11 +11,19 @@ export const getProjects = async (): Promise<Project[]> => {
     return res.data;
 }
 
-export const getProjectById = async (projectId: string): Promise<Project> => {
-    const res = await api.get(`/project/${projectId}`);
+export const getProjectsInTrash = async (): Promise<Project[]> => {
+    const res = await api.get("/project/trash");
     return res.data;
 }
 
+export const searchInProject = async (query: string): Promise<Project[]> => {
+    const res = await api.get(`/project/search?query=${encodeURIComponent(query)}`);
+    return res.data;
+}
+export const searchInTrash = async (query: string): Promise<Project[]> => {
+    const res = await api.get(`/project/search/trash?query=${encodeURIComponent(query)}`);
+    return res.data;
+}
 export const deleteProject = async (projectId: string): Promise<void> => {
     await api.delete(`/project/${projectId}`);
 }
