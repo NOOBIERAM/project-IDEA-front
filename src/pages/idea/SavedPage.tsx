@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import type { Project } from "../../types/Project"
-import { Clock, Flame, LucideSquareArrowOutUpRight, Trash2 } from "lucide-react"
+import { Clock, Flame, ExternalLink, Trash2 } from "lucide-react"
 import { truncateText } from "../../utils/trucanteText"
 import { getColors } from "../../helpers/getColors"
 import { moveToTrash, getProjects, searchInProject } from "../../api/project.api"
 import DetailModal from "../../components/shared/DetailModal"
 
-const SavedIdeaPage = () => {
+const SavedPage = () => {
     const [ideas, setIdeas] = useState<Project[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [selectedIdea, setSelectedIdea] = useState<Project | null>(null);
@@ -74,19 +74,16 @@ const SavedIdeaPage = () => {
                                     <div className="flex items-center justify-center space-x-2 opacity-0 group-hover:opacity-100  max-lg:opacity-100 transition-opacity">
 
                                         <button className="relative group/item flex items-center border rounded-full px-2 py-1  text-gray-500 hover:text-gray-800" onClick={() => handleDelete(idea.projectId)}>
-
-                                            <Trash2 size={18} />
                                             <span className="max-sm:hidden text-xs max-w-0 max-lg:mx-2 max-lg:max-w-full overflow-hidden whitespace-nowrap transition-all duration-300 group-hover/item:mx-2 group-hover/item:max-w-[80px]">
                                                 Supprimer
                                             </span>
+                                            <Trash2 size={18} />
                                         </button>
                                         <button className="relative group/item flex items-center border rounded-full px-2 py-1  text-gray-500 hover:text-gray-800" onClick={() => setSelectedIdea(idea)}>
-
-                                            <LucideSquareArrowOutUpRight size={18} />
-
                                             <span className="max-sm:hidden text-xs max-w-0 max-lg:mx-2 max-lg:max-w-full overflow-hidden whitespace-nowrap transition-all duration-300 group-hover/item:mx-2 group-hover/item:max-w-[120px] ">
                                                 Plus de détail
                                             </span>
+                                            <ExternalLink size={18} />
                                         </button>
                                     </div>
                                 </div>
@@ -117,4 +114,4 @@ const SavedIdeaPage = () => {
     )
 }
 
-export default SavedIdeaPage
+export default SavedPage
