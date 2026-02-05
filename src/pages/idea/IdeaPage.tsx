@@ -7,11 +7,10 @@ import { truncateText } from "../../utils/trucanteText";
 import type { MistralResponse } from "../../types/Mistral";
 import { getIdeaByMistral } from "../../api/mistral.api";
 import type { LevelType } from "../../types/Level";
-import DetailModal from "../../components/idea/DetailModal";
+import DetailModal from "../../components/shared/DetailModal";
 import { createProject } from "../../api/project.api";
 import type { ProjectDto } from "../../types/Project";
 
-// TODO: integration customization
 const IdeaPage = () => {
 
     const [ideas, setIdeas] = useState<MistralResponse[]>([])
