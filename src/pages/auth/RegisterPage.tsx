@@ -9,9 +9,9 @@ import GradientButton from "../../components/shared/GradientButton"
 const RegisterPage = () => {
     const navigate = useNavigate()
     const [videAnimation, setVideAnimation] = useState(true);
-    const [username, setUsername] = useState("RoutsGG")
-    const [password, setPassword] = useState("123456")
-    const [confirmPassword, setConfirmPassword] = useState("123456")
+    const [username, setUsername] = useState(import.meta.env.VITE_MOCK_USERNAME || "")
+    const [password, setPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
+    const [confirmPassword, setConfirmPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
     const [errorMessage, setErrorMessage] = useState<string[] | null>(null);
     
     const handleRegister = async (e: any) => {
