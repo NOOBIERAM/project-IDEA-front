@@ -7,6 +7,9 @@ import Background from "../../components/landing/Background";
 import { useNavigate } from "react-router-dom";
 import GradientButton from "../../components/shared/GradientButton";
 import { scrollToSection } from "../../helpers/scrollToSection";
+import DetailModal from "../../components/shared/DetailModal";
+import { getOneIdeaByMistral } from "../../api/mistral.api";
+import type { MistralResponse } from "../../types/Mistral";
 
 const about = [
     {
@@ -58,6 +61,7 @@ const LandingPage = () => {
     const navigate = useNavigate()
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [isScrolled, setIsScrolled] = useState(false)
+    const [generatedIdea, setGeneratedIdea] = useState<MistralResponse | null>(null);
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 10)
@@ -65,9 +69,18 @@ const LandingPage = () => {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
+    const handleGenerateIdea = async() => {
+        try {
+            const idea =  await getOneIdeaByMistral();
+            console.log(idea)
+            setGeneratedIdea(idea);
+        } catch (error) {
+            console.error("-- Error while generating idea -- ", error)
+        }
+    }
     return <>
-        <Background/>
-        <Navbar/>
+        <Background />
+        <Navbar />
         <section id="acceuil" className="min-h-screen flex flex-col justify-center px-[2%]">
             <div className="xl:grid xl:grid-cols-2 gap-12">
                 <div className="flex flex-col text-center xl:text-start justify-center ">
@@ -79,10 +92,10 @@ const LandingPage = () => {
                         </span>
                     </h1>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center xl:justify-start mt-15 pl-2.5 max-sm:px-15 font-semibold">
-                        <button className="px-6 py-3 border-2 rounded-full hover:scale-105 transition-transform duration-300">
+                        <button className="px-6 py-3 border-2 rounded-full hover:scale-105 transition-transform duration-300" onClick={handleGenerateIdea}>
                             Générer une idée
                         </button>
-                        <GradientButton onClick={()=> navigate("/login")}> Commencer </GradientButton>            
+                        <GradientButton onClick={() => navigate("/login")}> Commencer </GradientButton>
                     </div>
                 </div>
                 {/* xl:flex flex-col */}
@@ -192,7 +205,7 @@ const LandingPage = () => {
                         Prêt à <br /> construire un vrai projet ?
                     </h1>
 
-                    <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold" onClick={()=> navigate("/login")}>
+                    <button className="px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300 flex items-center space-x-5 bg-white font-semibold" onClick={() => navigate("/login")}>
                         <span>Commencer</span>
                         <ArrowRight size={20} className="translate-y-[2px]" />
                     </button>
@@ -205,6 +218,11 @@ const LandingPage = () => {
                 <p>© 2026 Project-IDEA - RoutsGG - NOOBIERAM.</p>
             </div>
         </section>
+        {
+            generatedIdea && <DetailModal idea={generatedIdea} onCancel={() => {
+                setGeneratedIdea(null)
+            }} />
+        }
         <ScrollTop />
 
     </>

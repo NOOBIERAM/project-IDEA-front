@@ -4,7 +4,7 @@ import { Clock, Flame, LucideSquareArrowOutUpRight, Trash2 } from "lucide-react"
 import { truncateText } from "../../utils/trucanteText"
 import { getColors } from "../../helpers/getColors"
 import { moveToTrash, getProjects, searchInProject } from "../../api/project.api"
-import DetailModal from "../../components/idea/DetailModal"
+import DetailModal from "../../components/shared/DetailModal"
 
 const SavedIdeaPage = () => {
     const [ideas, setIdeas] = useState<Project[]>([])
