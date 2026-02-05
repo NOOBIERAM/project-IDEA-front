@@ -3,7 +3,7 @@ import type { Project } from "../../types/Project"
 import { Clock, Flame, LucideSquareArrowOutUpRight, Trash2 } from "lucide-react"
 import { truncateText } from "../../utils/trucanteText"
 import { getColors } from "../../helpers/getColors"
-import { moveToTrash, getProjects } from "../../api/project.api"
+import { moveToTrash, getProjects, searchInProject } from "../../api/project.api"
 import DetailModal from "../../components/idea/DetailModal"
 
 const SavedIdeaPage = () => {
@@ -30,7 +30,23 @@ const SavedIdeaPage = () => {
             console.error("-- Error while moving project to trash -- ", error)
         }
     }
-
+    const handleSearch = async (query: string) => {
+        try {
+            setIsLoading(true);
+            if (query) {
+                const data = await searchInProject(query)
+                setIdeas(data);
+            }
+            else {
+                fetchSavedIdeas()
+            }
+        } catch (error) {
+            console.error("-- Error while searching in projects -- ", error)
+        }
+        finally {
+            setIsLoading(false);
+        }
+    }
     useEffect(() => {
         fetchSavedIdeas()
     }, [])
@@ -41,7 +57,11 @@ const SavedIdeaPage = () => {
                 isLoading && (<div className="loader absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"></div>)
             }
             <section className="max-w-full w-full h-full pt-10 relative">
-                <h1 className="font-bold text-3xl mb-10 px-10">Projet Enregistré  </h1>
+                <div className="mb-10 px-10 flex justify-between items-center">
+                    <h1 className="font-bold text-3xl ">Projet Enregistré  </h1>
+                    <input type="text" placeholder="Rechercher..." className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e) => handleSearch(e.target.value)} />
+
+                </div>
                 <div className="flex max-lg:flex-col flex-wrap gap-5 px-5 sm:px-10">
                     {
                         !isLoading && ideas.map((idea, index) => (
@@ -89,7 +109,7 @@ const SavedIdeaPage = () => {
                     }
                 </div>
                 {
-                    selectedIdea && <DetailModal idea={selectedIdea} onDelete={()=>{handleDelete(selectedIdea.projectId)}} onCancel={() => {
+                    selectedIdea && <DetailModal idea={selectedIdea} onDelete={() => { handleDelete(selectedIdea.projectId) }} onCancel={() => {
                         setSelectedIdea(null)
                     }} />
                 }
