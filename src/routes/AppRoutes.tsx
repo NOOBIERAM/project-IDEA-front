@@ -5,7 +5,8 @@ import RegisterPage from "../pages/auth/RegisterPage"
 import LoginPage from "../pages/auth/LoginPage"
 import IdeaLayout from "../layouts/IdeaLayout"
 import IdeaPage from "../pages/idea/IdeaPage"
-import SavedIdeaPage from "../pages/idea/SavedIdeaPage"
+import SavedPage from "../pages/idea/SavedPage"
+import TrashPage from "../pages/idea/TrashPage copy"
 
 const AppRoutes = () => {
     return (
@@ -18,7 +19,8 @@ const AppRoutes = () => {
             </PrivateRoute>} /> */}
             <Route path="/idea" element={<IdeaLayout />}>
                 <Route index element={<IdeaPage />} />
-                <Route path="saved" element={<SavedIdeaPage />}/>
+                <Route path="saved" element={<SavedPage />}/>
+                <Route path="trash" element={<TrashPage />}/>
             </Route>
         </Routes>
     )

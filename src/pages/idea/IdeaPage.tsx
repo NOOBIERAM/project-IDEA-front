@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Clock, Flame, LucideSquareArrowOutUpRight, Save, Settings } from "lucide-react";
+import { Clock, Flame, ExternalLink, Save, Settings } from "lucide-react";
 import CustomizationPanel from "../../components/idea/CustomizationPanel";
 import { getLevelName } from "../../helpers/getLevelName";
 import { getColors } from "../../helpers/getColors";
@@ -86,20 +86,19 @@ const IdeaPage = () => {
                                                 <div className="btn-loader mx-auto"></div>
                                             ) : (
                                                 <>
-                                                    <Save size={18} />
                                                     <span className="max-sm:hidden text-xs max-w-0 max-lg:mx-2 max-lg:max-w-full overflow-hidden whitespace-nowrap transition-all duration-300 group-hover/item:mx-2 group-hover/item:max-w-[80px]">
                                                         Enregistrer
-                                                    </span></>
+                                                    </span>
+                                                    <Save size={18} />
+                                                </>
                                             )
                                         }
                                     </button>
                                     <button className="relative group/item flex items-center border rounded-full px-2 py-1  text-gray-500 hover:text-gray-800" onClick={() => setSelectedIdea(idea)}>
-
-                                        <LucideSquareArrowOutUpRight size={18} />
-
                                         <span className="max-sm:hidden text-xs max-w-0 max-lg:mx-2 max-lg:max-w-full overflow-hidden whitespace-nowrap transition-all duration-300 group-hover/item:mx-2 group-hover/item:max-w-[120px] ">
                                             Plus de détail
                                         </span>
+                                        <ExternalLink size={18} />
                                     </button>
                                 </div>
                             </div>
