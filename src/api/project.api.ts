@@ -11,6 +11,11 @@ export const getProjects = async (): Promise<Project[]> => {
     return res.data;
 }
 
+export const getProjectsInTrash = async (): Promise<Project[]> => {
+    const res = await api.get("/project/trash");
+    return res.data;
+}
+
 export const getProjectById = async (projectId: string): Promise<Project> => {
     const res = await api.get(`/project/${projectId}`);
     return res.data;
