@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ArrowLeft, X } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
@@ -12,9 +12,9 @@ import GradientButton from "../../components/shared/GradientButton"
 const LoginPage = () => {
     const navigate = useNavigate()
     const [videAnimation, setVideAnimation] = useState(true);
-    const [username, setUsername] = useState("RoutsGG")
-    const [password, setPassword] = useState("123456")
-    const { setUser } = useContext(AuthContext);
+    const [username, setUsername] = useState(import.meta.env.VITE_MOCK_USERNAME || "")
+    const [password, setPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
+    const { user,setUser } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState< string[] | null>(null);
     const handleLogin = async (e: any) => {
         e.preventDefault();
@@ -40,7 +40,12 @@ const LoginPage = () => {
             }
         }
     };
-
+    useEffect(() => {
+        if (user) {
+            navigate("/idea");
+        }
+    }, [user, navigate])
+    
     return <section id="register" className="min-h-screen  flex flex-col items-center justify-center lg:min-w-[1400px]">
         {/* <div className="bg-white absolute w-full h-full -z-1"></div> */}
         <div className=" lg:grid lg:grid-cols-2 shadow-2xl rounded-3xl bg-white lg:min-w-[1000px]">

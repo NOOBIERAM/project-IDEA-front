@@ -7,6 +7,7 @@ import IdeaLayout from "../layouts/IdeaLayout"
 import IdeaPage from "../pages/idea/IdeaPage"
 import SavedPage from "../pages/idea/SavedPage"
 import TrashPage from "../pages/idea/TrashPage copy"
+import PrivateRoute from "./PrivatesRoutes"
 
 const AppRoutes = () => {
     return (
@@ -17,7 +18,7 @@ const AppRoutes = () => {
             {/* <Route path="/idea" element={<PrivateRoute>
                 <IdeaPage />
             </PrivateRoute>} /> */}
-            <Route path="/idea" element={<IdeaLayout />}>
+            <Route path="/idea" element={<PrivateRoute><IdeaLayout /></PrivateRoute>}>
                 <Route index element={<IdeaPage />} />
                 <Route path="saved" element={<SavedPage />}/>
                 <Route path="trash" element={<TrashPage />}/>
