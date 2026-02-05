@@ -7,8 +7,8 @@ const IdeaNavbar = () => {
                 Project-IDEA
             </span>
             <ul className="max-sm:w-full flex space-x-15 items-center justify-between  font-semibold">
-                <NavLink to="/idea">Idée</NavLink>
-                <NavLink to="/idea/saved">Enregistrer</NavLink>
+                <NavLink to="/idea">Assistance IA</NavLink>
+                <NavLink to="/idea/saved">Projet</NavLink>
                 <NavLink to="/idea/trash">Corbeille</NavLink>
             </ul>
             <div className="flex space-x-3 font-semibold max-sm:hidden">
