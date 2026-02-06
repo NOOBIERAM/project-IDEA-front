@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { ArrowLeft, X } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
 import { login } from "../../api/auth.api"
