@@ -10,6 +10,7 @@ import { scrollToSection } from "../../helpers/scrollToSection";
 import DetailModal from "../../components/shared/DetailModal";
 import { getOneIdeaByMistral } from "../../api/mistral.api";
 import type { MistralResponse } from "../../types/Mistral";
+import { keepAlive } from "../../api/health.api";
 
 const about = [
     {
@@ -64,6 +65,15 @@ const LandingPage = () => {
     const [generatedIdea, setGeneratedIdea] = useState<MistralResponse | null>(null);
 
     useEffect(() => {
+        const startBackApp = async () => {
+            try {
+                await keepAlive();
+            } catch (error) {
+                console.error("-- Error while keeping the app alive -- ", error);
+            }
+        };
+        
+        startBackApp();
         const handleScroll = () => setIsScrolled(window.scrollY > 10)
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
