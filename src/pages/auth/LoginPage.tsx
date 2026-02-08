@@ -4,17 +4,17 @@ import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
 import { login } from "../../api/auth.api"
 import { getUserProfile } from "../../api/user.api"
-// import loginAnim from "../../assets/animations/loginAnim.webm"
-// import croixAnim from "../../assets/animations/croix.webm"
+import computer from "../../assets/images/retrocomputer.webp"
+import errorx from "../../assets/images/errorx.webp"
 import GradientButton from "../../components/shared/GradientButton"
 import type { AxiosError } from "axios"
 
 
 const LoginPage = () => {
     const navigate = useNavigate()
-    const [videAnimation, setVideAnimation] = useState(true);
-    const [username, setUsername] = useState(import.meta.env.VITE_MOCK_USERNAME || "")
-    const [password, setPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
+    const [isErrImage, setIsErrImage] = useState(true);
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     const { user,setUser } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState< string[] | null>(null);
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,7 +26,7 @@ const LoginPage = () => {
             navigate("/idea");
         } catch (err: unknown) {
             const error = err as AxiosError<{ message: string }>;
-            setVideAnimation(false);
+            setIsErrImage(false);
             if (error.response) {
                 const message = error.response.data.message;
 
@@ -62,14 +62,9 @@ const LoginPage = () => {
                     </button>
 
                     {/* Image centrée horizontalement et verticalement */}
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        preload="auto"
-                        playsInline
-                        src={videAnimation ? "./animations/loginAnim.webm" : "./animations/croix.webm"}
-                        className={`${videAnimation ? "w-90" : "w-60"}`}
+                    <img
+                        src={isErrImage ? computer : errorx}
+                        className={`${isErrImage ? "w-90" : "w-60"}`}
                     />
 
                 </div>
@@ -86,7 +81,7 @@ const LoginPage = () => {
                             value={username}
                             onChange={(e) => {
                                 setErrorMessage(null)
-                                setVideAnimation(true);
+                                setIsErrImage(true);
                                 setUsername(e.target.value)
                             }
                             }
@@ -101,7 +96,7 @@ const LoginPage = () => {
                             value={password}
                             onChange={(e) => {
                                 setErrorMessage(null)
-                                setVideAnimation(true);
+                                setIsErrImage(true);
                                 setPassword(e.target.value)
                             }}
                             className="p-3 h-10 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-400 outline-none"
