@@ -20,7 +20,7 @@ const IdeaPage = () => {
     const [ideaText, setIdeaText] = useState("")
     const [levelCount, setLevelCount] = useState(0);
     const [level, setLevel] = useState<LevelType>("aléatoire")
-    const [count, setCount] = useState(10);
+    const [count, setCount] = useState(4);
     const [isLoading, setIsLoading] = useState(false)
     const [saveLoading, setSaveLoading] = useState(false)
     const [selectedIdea, setSelectedIdea] = useState<MistralResponse | null>(null);
