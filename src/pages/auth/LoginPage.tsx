@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react"
 import { ArrowLeft } from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
 import { login } from "../../api/auth.api"
 import { getUserProfile } from "../../api/user.api"
-import loginAnim from "../../assets/animations/loginAnim.webm"
-import croixAnim from "../../assets/animations/croix.webm"
+// import loginAnim from "../../assets/animations/loginAnim.webm"
+// import croixAnim from "../../assets/animations/croix.webm"
 import GradientButton from "../../components/shared/GradientButton"
+import type { AxiosError } from "axios"
 
 
 const LoginPage = () => {
@@ -16,14 +17,15 @@ const LoginPage = () => {
     const [password, setPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
     const { user,setUser } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState< string[] | null>(null);
-    const handleLogin = async (e: any) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             await login({ username, password });
             const profile = await getUserProfile();
             setUser(profile);
             navigate("/idea");
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as AxiosError<{ message: string }>;
             setVideAnimation(false);
             if (error.response) {
                 const message = error.response.data.message;
@@ -64,7 +66,9 @@ const LoginPage = () => {
                         autoPlay
                         loop
                         muted
-                        src={videAnimation ? loginAnim : croixAnim}
+                        preload="auto"
+                        playsInline
+                        src={videAnimation ? "./animations/loginAnim.webm" : "./animations/croix.webm"}
                         className={`${videAnimation ? "w-90" : "w-60"}`}
                     />
 
@@ -109,7 +113,8 @@ const LoginPage = () => {
                     <GradientButton type="submit" className="py-2">
                         Se connecter
                     </GradientButton>
-                    <a href="/#/register" className="text-center text-sm mt-3 underline underline-offset-4">Pas de compte ? Inscrivez-vous</a>
+                    
+                    <Link to="/register" className="text-center text-sm mt-3 underline underline-offset-4">Pas de compte ? Inscrivez-vous</Link>
                 </div>
 
             </form>

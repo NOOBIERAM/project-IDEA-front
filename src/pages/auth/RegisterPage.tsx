@@ -1,10 +1,11 @@
 import { ArrowLeft } from "lucide-react"
-import { useNavigate } from "react-router-dom"
-import loginAnim from "../../assets/animations/loginAnim.webm"
-import croixAnim from "../../assets/animations/croix.webm"
+import { Link,useNavigate } from "react-router-dom"
+// import loginAnim from "../../assets/animations/loginAnim.webm"
+// import croixAnim from "../../assets/animations/croix.webm"
 import { useState } from "react"
 import { register } from "../../api/auth.api"
 import GradientButton from "../../components/shared/GradientButton"
+import type { AxiosError } from "axios"
 
 const RegisterPage = () => {
     const navigate = useNavigate()
@@ -14,12 +15,13 @@ const RegisterPage = () => {
     const [confirmPassword, setConfirmPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
     const [errorMessage, setErrorMessage] = useState<string[] | null>(null);
     
-    const handleRegister = async (e: any) => {
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             try {
                 await register({ username, password, confirmPassword });
                 navigate("/login");
-            } catch (error: any) {
+            } catch (err: unknown) {
+                const error = err as AxiosError<{ message: string }>;
                 setVideAnimation(false);
                 if (error.response) {
                     const message = error.response.data.message;
@@ -53,7 +55,9 @@ const RegisterPage = () => {
                         autoPlay
                         loop
                         muted
-                        src={videAnimation ? loginAnim : croixAnim}
+                        preload="metadata"
+                        playsInline
+                        src={videAnimation ? "./animations/registerAnim.webm" : "./animations/croix.webm"}
                         className={`${videAnimation ? "w-90" : "w-60"}`}
                     />
 
@@ -111,7 +115,8 @@ const RegisterPage = () => {
                     <GradientButton type="submit" className="py-2">
                         S'inscrire
                     </GradientButton>
-                    <a href="/#/login" className="text-center text-sm mt-3 underline underline-offset-4">Déjà un compte ? Connectez-vous</a>
+                    
+                    <Link to="/login" className="text-center text-sm mt-3 underline underline-offset-4">Déjà un compte ? Connectez-vous</Link>
                 </div>
 
             </form>
