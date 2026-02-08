@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react"
-import { Link,useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import computer from "../../assets/images/retrocomputer.webp"
 import { useState } from "react"
 import { register } from "../../api/auth.api"
@@ -8,33 +8,37 @@ import type { AxiosError } from "axios"
 
 const RegisterPage = () => {
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
     const [username, setUsername] = useState(import.meta.env.VITE_MOCK_USERNAME || "")
     const [password, setPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
     const [confirmPassword, setConfirmPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
     const [errorMessage, setErrorMessage] = useState<string[] | null>(null);
-    
+
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-            e.preventDefault();
-            try {
-                await register({ username, password, confirmPassword });
-                navigate("/login");
-            } catch (err: unknown) {
-                const error = err as AxiosError<{ message: string }>;
-                if (error.response) {
-                    const message = error.response.data.message;
-    
-                    if (message === "Passwords do not match") {
-                        setErrorMessage(["password","ne correspond pas"]);
-                    } else if (message === "Username already exists") {
-                        setErrorMessage(["username","existe déjà"]);
-                    } else {
-                        console.error("❌ Erreur inconnue :", message);
-                    }
+        setIsLoading(true)
+        e.preventDefault();
+        try {
+            await register({ username, password, confirmPassword });
+            navigate("/login");
+        } catch (err: unknown) {
+            const error = err as AxiosError<{ message: string }>;
+            if (error.response) {
+                const message = error.response.data.message;
+
+                if (message === "Passwords do not match") {
+                    setErrorMessage(["password", "ne correspond pas"]);
+                } else if (message === "Username already exists") {
+                    setErrorMessage(["username", "existe déjà"]);
                 } else {
-                    console.error("Erreur réseau ou serveur :", error);
+                    console.error("❌ Erreur inconnue :", message);
                 }
+            } else {
+                console.error("Erreur réseau ou serveur :", error);
             }
-        };
+        } finally {
+            setIsLoading(false)
+        }
+    };
 
     return <section id="register" className="min-h-screen  flex flex-col items-center justify-center lg:min-w-[1400px]">
         {/* <div className="bg-white absolute w-full h-full -z-1"></div> */}
@@ -103,10 +107,10 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="flex flex-col ">
-                    <GradientButton type="submit" className="py-2">
+                    <GradientButton type="submit" className="py-2" isDisable={isLoading}>
                         S'inscrire
                     </GradientButton>
-                    
+
                     <Link to="/login" className="text-center text-sm mt-3 underline underline-offset-4">Déjà un compte ? Connectez-vous</Link>
                 </div>
 
