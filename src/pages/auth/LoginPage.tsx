@@ -11,15 +11,18 @@ import type { AxiosError } from "axios"
 
 const LoginPage = () => {
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const { user, setUser } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState<string[] | null>(null);
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        setIsLoading(true)
         e.preventDefault();
         try {
             await login({ username, password });
             const profile = await getUserProfile();
+            console.log("profile == ", profile)
             setUser(profile);
             navigate("/idea");
         } catch (err: unknown) {
@@ -37,6 +40,8 @@ const LoginPage = () => {
             } else {
                 console.error("Erreur réseau ou serveur :", error);
             }
+        } finally {
+            setIsLoading(false)
         }
     };
     useEffect(() => {
@@ -99,7 +104,7 @@ const LoginPage = () => {
                 </div>
 
                 <div className="flex flex-col ">
-                    <GradientButton type="submit" className="py-2">
+                    <GradientButton type="submit" className="py-2" isDisable={isLoading}>
                         Se connecter
                     </GradientButton>
 
