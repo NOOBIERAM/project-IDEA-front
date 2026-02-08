@@ -1,7 +1,6 @@
 import { ArrowLeft } from "lucide-react"
 import { Link,useNavigate } from "react-router-dom"
 import computer from "../../assets/images/retrocomputer.webp"
-import errorx from "../../assets/images/errorx.webp"
 import { useState } from "react"
 import { register } from "../../api/auth.api"
 import GradientButton from "../../components/shared/GradientButton"
@@ -9,7 +8,6 @@ import type { AxiosError } from "axios"
 
 const RegisterPage = () => {
     const navigate = useNavigate()
-    const [isErrImage, setIsErrImage] = useState(true);
     const [username, setUsername] = useState(import.meta.env.VITE_MOCK_USERNAME || "")
     const [password, setPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
     const [confirmPassword, setConfirmPassword] = useState(import.meta.env.VITE_MOCK_PASSWORD || "")
@@ -22,7 +20,6 @@ const RegisterPage = () => {
                 navigate("/login");
             } catch (err: unknown) {
                 const error = err as AxiosError<{ message: string }>;
-                setIsErrImage(false);
                 if (error.response) {
                     const message = error.response.data.message;
     
@@ -52,8 +49,10 @@ const RegisterPage = () => {
                     </button>
 
                     <img
-                        src={isErrImage ? computer : errorx}
-                        className={`${isErrImage ? "w-90" : "w-60"}`}
+                        alt="computer image"
+                        loading="lazy"
+                        src={computer}
+                        className="w-90 h-90"
                     />
 
                 </div>
@@ -70,7 +69,6 @@ const RegisterPage = () => {
                             value={username}
                             onChange={(e) => {
                                 setErrorMessage(null)
-                                setIsErrImage(true);
                                 setUsername(e.target.value)
                             }}
                             className="p-3 h-10 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-400 outline-none"
@@ -84,7 +82,6 @@ const RegisterPage = () => {
                             value={password}
                             onChange={(e) => {
                                 setErrorMessage(null)
-                                setIsErrImage(true);
                                 setPassword(e.target.value)
                             }}
                             className="p-3 h-10 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-400 outline-none"
@@ -98,7 +95,6 @@ const RegisterPage = () => {
                             value={confirmPassword}
                             onChange={(e) => {
                                 setErrorMessage(null)
-                                setIsErrImage(true);
                                 setConfirmPassword(e.target.value)
                             }}
                             className="p-3 h-10 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-400 outline-none"
