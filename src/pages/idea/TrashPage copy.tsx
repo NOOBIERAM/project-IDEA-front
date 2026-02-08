@@ -6,7 +6,6 @@ import { getColors } from "../../helpers/getColors"
 import { deleteProject, getProjectsInTrash, restoreFromTrash, searchInTrash } from "../../api/project.api"
 import DetailModal from "../../components/shared/DetailModal"
 
-//TODO confirm delete
 const TrashPage = () => {
     const [ideas, setIdeas] = useState<Project[]>([])
     const [isLoading, setIsLoading] = useState(false)

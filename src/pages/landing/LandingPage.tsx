@@ -72,7 +72,6 @@ const LandingPage = () => {
     const handleGenerateIdea = async() => {
         try {
             const idea =  await getOneIdeaByMistral();
-            console.log(idea)
             setGeneratedIdea(idea);
         } catch (error) {
             console.error("-- Error while generating idea -- ", error)

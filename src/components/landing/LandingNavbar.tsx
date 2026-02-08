@@ -6,7 +6,7 @@ import { scrollToSection } from "../../helpers/scrollToSection";
 const LandingNavbar = () => {
     const navigate = useNavigate();
     const [scrolled, setScrolled] = useState(false);
-    const [selectedLink, setSelectedLink] = useState('acceuil'); // Placeholder for future use
+    const [selectedLink, setSelectedLink] = useState('acceuil');
 
     useEffect(() => {
         const handleScroll = () => {

@@ -26,11 +26,9 @@ export const AuthProvider = ({ children }: any) => {
 
   const initializeAuth = async () => {
     try {
-      // 1️⃣ Rafraîchir accessToken via refresh token cookie
       const newAccessToken = await refreshToken();
       api.defaults.headers.common["Authorization"] = `Bearer ${newAccessToken}`;
 
-      // 2️⃣ Récupérer les infos utilisateur
       const profile = await getUserProfile();
       setUser(profile);
     } catch (err) {
