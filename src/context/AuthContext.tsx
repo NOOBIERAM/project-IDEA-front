@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import api from "../api/axios.config";
 import { getUserProfile } from "../api/user.api";
-import { refreshToken } from "../api/auth.api";
+import { refreshToken, signout } from "../api/auth.api";
 import type { User } from "../types/User";
 import { useNavigate } from "react-router-dom";
 
@@ -43,10 +43,11 @@ export const AuthProvider = ({ children }: any) => {
     
   }, []);
 
-  const logout = () => {
-    navigate("/login");
-    setUser(null);
+  const logout = async () => {
+    await signout();
     api.defaults.headers.common["Authorization"] = "";
+    setUser(null);
+    navigate("/login");
   };
 
   return (

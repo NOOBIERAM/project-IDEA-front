@@ -15,3 +15,7 @@ export const refreshToken = async (): Promise<string> => {
     const res = await api.post("/auth/refresh",{});
     return res.data.accessToken;
 }
+
+export const signout = async () => {
+  await api.post("/auth/logout");
+};

@@ -22,6 +22,7 @@ const LoginPage = () => {
         try {
             await login({ username, password });
             const profile = await getUserProfile();
+            console.log("profile == ", profile)
             setUser(profile);
             navigate("/idea");
         } catch (err: unknown) {
